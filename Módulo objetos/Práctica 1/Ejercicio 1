@@ -1,0 +1,21 @@
+package java1;
+import PaqueteLectura.GeneradorAleatorio;
+public class Ejercicio1 {   
+    public static void main(String[] args) {
+       GeneradorAleatorio.iniciar();
+       int DF = 11; // de 0 a 10;
+       int [] tabla2 = new int [DF];
+       
+       int i;
+       for (i=0; i <DF ; i++)
+           tabla2[i] = i*2;
+        
+       int ale = GeneradorAleatorio.generarInt(12); 
+       while (ale != 11) {
+            System.out.println("El resultado de multiplicar " + ale + "x 2 = " + tabla2[ale]);
+            ale = GeneradorAleatorio.generarInt(12);
+       }
+       System.out.println("Como se generó el número " + ale + " finaliza el ejercicio.");
+    }
+    
+}
