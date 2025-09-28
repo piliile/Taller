@@ -1,0 +1,43 @@
+/* Utilizando la clase Persona. Realice un programa que almacene en un vector a lo sumo
+15 personas. La información (nombre, DNI, edad) se debe generar aleatoriamente hasta
+obtener edad 0. Luego de almacenar la información:
+ - Informe la cantidad de personas mayores de 65 años.
+ - Muestre la representación de la persona con menor DNI. */
+package Práctica2;
+import SeDispone.Persona;
+import PaqueteLectura.GeneradorAleatorio;
+public class Ejercicio2_2 {
+
+    public static void main(String[] args) {      
+      int dimF = 15;
+      Persona [] vector = new Persona [dimF];
+      
+      GeneradorAleatorio.iniciar();
+      String nombre; int dni; 
+      int edad = GeneradorAleatorio.generarInt(101);
+      //for (int i = 0; (i < dF && edad != 0); i++) preguntar si se puede asi
+      int dimL = 0;
+      while (edad != 0 && dimL < dimF){
+          dni =  GeneradorAleatorio.generarInt(70000);
+          nombre = GeneradorAleatorio.generarString(15);
+          vector[dimL] = new Persona(nombre, dni, edad);
+          System.out.println(vector[dimL].toString());
+          dimL++;
+          edad = GeneradorAleatorio.generarInt(101);
+      }
+      int cantidadMayores = 0;
+      int min = 99999;
+      Persona datosMenorPersona = null;
+      for (int i = 0; i < dimL; i++) {
+          if(vector[i].getEdad() > 65)
+              cantidadMayores++;
+          if(vector[i].getDNI() < min){
+              min = vector[i].getDNI();
+              datosMenorPersona = vector[i];
+          }
+      }
+      System.out.println("La cantidad de personas mayores a 65 años son: " + cantidadMayores + " personas");
+      System.out.println("La persona con menor DNI es: "); System.out.println(datosMenorPersona.toString());
+    }
+    
+}
