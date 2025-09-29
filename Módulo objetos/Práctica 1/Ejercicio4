@@ -4,9 +4,9 @@ concurrieron a cada oficina de cada piso. Para esto, simule la llegada de person
 edificio de la siguiente manera: a cada persona se le pide el nro. de piso y nro. de
 oficina a la cual quiere concurrir. La llegada de personas finaliza al indicar un nro.
 de piso 9. Al finalizar la llegada de personas, informe lo pedido. */
-package java1;
+package tema1;
 import PaqueteLectura.Lector;
-public class Ejercicio4 {
+public class ej4{
 
     public static void main(String[] args) {
         int dFP = 8;
@@ -17,19 +17,20 @@ public class Ejercicio4 {
         int j = 0;
         int numeroPiso;
         int numeroOficina;
-        System.out.println("Ingrese el número de piso, 0-8, 9 para terminar, al cual quiere ir: "); 
+        System.out.println("Ingrese el número de piso, 1-8, 9 para terminar, al cual quiere ir: "); 
         numeroPiso = Lector.leerInt();
         while(numeroPiso != 9) {
-            System.out.println("Ahora ingrese el número de oficina, 0-3, a la cual quiere concurrir: ");
+            System.out.println("Ahora ingrese el número de oficina, 1-4, a la cual quiere concurrir: ");
             numeroOficina = Lector.leerInt();
-            matriz[numeroPiso][numeroOficina]++;  
-            System.out.println("Ingrese el número de piso, 0-8, 9 para terminar, al cual quiere ir: "); 
+            matriz[numeroPiso-1][numeroOficina-1]++;  
+            System.out.println("Ingrese el número de piso, 1-8, 9 para terminar, al cual quiere ir: "); 
             numeroPiso = Lector.leerInt();
         }    
         
         for (i=0; i<dFP; i++) {
             for (j=0; j<dFO; j++) {
-                System.out.println("En la posicion: fila " + i + " columna " + j + " concurrieron " + matriz[i][j] + " personas");
+               
+                System.out.println("En la posicion: fila " + (i+1) + " columna " + (j+1) + " concurrieron " + matriz[i][j] + " personas");
                 System.out.println("///////////////////////////////////////////////////////");
             }
         }
