@@ -1,0 +1,61 @@
+/* Sobre un nuevo programa, modifique el ejercicio anterior para considerar que:
+a) Durante el proceso de inscripción se pida a cada persona sus datos (nombre, DNI, edad)
+y el día en que se quiere presentar al casting. La persona debe ser inscripta en ese día, en el
+siguiente turno disponible. En caso de no existir un turno en ese día, informe la situación.
+La inscripción finaliza al llegar una persona con nombre “ZZZ” o al cubrirse los 40 cupos
+de casting.
+Una vez finalizada la inscripción:
+b) Informar para cada día: la cantidad de inscriptos al casting ese día y el nombre de la
+persona a entrevistar en cada turno asignado. */
+package Práctica2;
+import SeDispone.Persona;
+import PaqueteLectura.Lector;
+public class Ejercicio4_2 {
+
+    public static void main(String[] args) {
+        
+       int dimFDia = 5;
+       int dimFPersona = 8;
+       Persona [][] casting = new Persona[dimFDia][dimFPersona];
+       
+       int totalPersonas = 0;
+       
+       
+       int [] vectorCantidadPorDia = new int[dimFDia];
+       for (int i = 0; i < dimFDia; i++)
+           vectorCantidadPorDia[i] = 0;
+       
+       System.out.println("Ingrese un nombre: ");
+       String nombre = Lector.leerString();
+       while (!nombre.equals("ZZZ") && totalPersonas < 40) { // mientras el nombre sea distinto de ZZZ y no se completen los cupos
+           System.out.println("Ingrese un dni: ");
+           int dni = Lector.leerInt(); // leo dni
+           System.out.println("Ingrese una edad: ");
+           int edad = Lector.leerInt(); // leo edad
+           
+           System.out.println("Ingrese el dia (1-5) en el que se quiere anotar: ");
+           int dia = Lector.leerInt();
+           dia = dia - 1;
+           if (vectorCantidadPorDia[dia] < dimFPersona){
+                int turno = vectorCantidadPorDia[dia]; // 
+                casting[dia][turno] = new Persona(nombre, dni, edad); // cargo la informacion en la matriz. 1er carga: casting[0][0] = datos de la persona que leimos recien.
+                vectorCantidadPorDia[dia]++;
+                totalPersonas++; // incrementamos 1 a la cantidad total de personas. 
+           }
+           else
+                System.out.println("No hay lugar en el día: " + dia);
+           
+           if (totalPersonas < 40) {
+               System.out.println("Ingrese un nombre: ");
+               nombre = Lector.leerString();
+           }
+        }
+        for (int d = 0; d < dimFDia; d++) {
+            System.out.println("Día " + (d + 1) + ": ");
+            System.out.println("Cantidad de inscriptos: " + vectorCantidadPorDia[d]);
+            for (int t = 0; t < vectorCantidadPorDia[d]; t++) 
+                System.out.println("Turno " + (t + 1) + ": " + casting[d][t].getNombre());
+        }
+       }
+    }
+    
