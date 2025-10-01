@@ -9,10 +9,10 @@ Una vez finalizada la inscripción:
 b) Informar para cada día y turno asignado, el nombre de la persona a entrevistar.
 NOTA: utilizar la clase Persona. Pensar en la estructura de datos a utilizar. Para comparar
 Strings use el método equals. */
-package Práctica2;
-import SeDispone.Persona;
+package tema2;
+import tema2.Persona;
 import PaqueteLectura.Lector;
-public class Ejercicio3_2 {
+public class ejer3 {
 
     public static void main(String[] args) {
        int dimFDia = 5;
@@ -26,32 +26,39 @@ public class Ejercicio3_2 {
        System.out.println("Ingrese un nombre: ");
        String nombre = Lector.leerString();
        while (!nombre.equals("ZZZ") && totalPersonas < 40) { // mientras el nombre sea distinto de ZZZ y no se completen los cupos
-           System.out.println("Ingrese un dni: ");
-           int dni = Lector.leerInt(); // leo dni
-           System.out.println("Ingrese una edad: ");
-           int edad = Lector.leerInt(); // leo edad
+           turno =0; 
+           while (!nombre.equals("ZZZ") && turno < dimFPersona) {
+                System.out.println("Ingrese un dni: ");
+                int dni = Lector.leerInt(); // leo dni
+                System.out.println("Ingrese una edad: ");
+                int edad = Lector.leerInt(); // leo edad
            
-           casting[dia][turno] = new Persona(nombre, dni, edad); // cargo la informacion en la matriz. 1er carga: casting[0][0] = datos de la persona que leimos recien.
+                casting[dia][turno] = new Persona(nombre, dni, edad); // cargo la informacion en la matriz. 1er carga: casting[0][0] = datos de la persona que leimos recien.
            
-           totalPersonas++; // incrementamos 1 a la cantidad total de personas. 
-           turno++; // ya cargamos datos, por lo tanto ya se cargó una persona.
-           
-           if (turno == dimFPersona) { // si se llegó al límite de turnos (la variable turno llegó a 8), pasamos al siguiente dia
-               turno = 0; // inicializamos en 0, asi seguimos por ejemplo luego del dia 0, en el turno 0 dia 1.
-               dia++; // siguiente dia
+                totalPersonas++; // incrementamos 1 a la cantidad total de personas. 
+                turno++; // ya cargamos datos, por lo tanto ya se cargó una persona.
+                System.out.println("Ingrese un nombre: ");
+                nombre = Lector.leerString(); 
            }
-           if (totalPersonas < 40) {
-               System.out.println("Ingrese un nombre: ");
-               nombre = Lector.leerString();
+            dia++; // siguiente dia  
            }
-        }
-       for (int d = 0; d < dimFDia; d++) {
+       System.out.println(dia);
+       dia--;
+       for (int d = 0; d < dia; d++) {
             System.out.println("Día " + (d + 1) + ": ");
             for (int t = 0; t < dimFPersona; t++) {
-                if (casting[d][t] != null) { // si hay alguien inscripto, imprimimos su nombre
+                 // si hay alguien inscripto, imprimimos su nombre
                 System.out.println("Turno " + (t + 1) + ": " + casting[d][t].getNombre());
             }
         }
+    
+    System.out.println("Día: " + (dia+1));
+    for (int t = 0; t < turno; t++) {
+        System.out.println("Turno " + (t + 1) + ": " + casting[dia][t].getNombre());
+    }
+}
+       
+}
 }
     }
     
