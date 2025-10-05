@@ -1,0 +1,50 @@
+/* A- Modifique la clase Libro.java (carpeta tema3) para ahora considerar que el primer
+autor es un objeto instancia de la clase Autor.
+Implemente la clase Autor, sabiendo que se caracterizan por nombre, biografía y origen
+y que deben permitir devolver/modificar el valor de sus atributos y devolver una
+representación String formada por nombre, biografía y origen.
+Luego realice las modificaciones necesarias en la clase Libro.
+B- Modifique el programa Demo01Constructores (carpeta tema3) para instanciar los
+libros con su autor, considerando las modificaciones realizadas. Luego, a partir de uno de
+los libros instanciados, obtenga e imprima la representación del autor de ese libro.*/
+package Práctica3;
+import MisClases.AutorA;
+import MisClases.LibroA;
+import PaqueteLectura.Lector;
+public class Ejercicio2_3 {
+    public static void main(String[] args) {
+        System.out.println("Ingrese el nombre del autor: ");
+        String nombre = Lector.leerString();
+        System.out.println("Ingrese la biografia del autor: ");
+        String biografia = Lector.leerString();
+        System.out.println("Ingrese el origen del autor: ");
+        String origen = Lector.leerString();
+        
+        AutorA autor1 = new AutorA(nombre, biografia, origen);
+        
+        System.out.println("Ahora ingrese los datos del 2do autor: ");
+        System.out.println("Ingrese el nombre del autor: ");
+        String nombre2 = Lector.leerString();
+        System.out.println("Ingrese la biografia del autor: ");
+        String biografia2 = Lector.leerString();
+        System.out.println("Ingrese el origen del autor: ");
+        String origen2 = Lector.leerString();
+        
+        AutorA autor2 = new AutorA(nombre2, biografia2, origen2);
+        
+        // una vez cargados los autores, cargamos los libros.
+        LibroA libro1= new  LibroA( "Java: A Beginner's Guide",   
+                                 "Mcgraw-Hill", 2014,   
+                                 autor1, "978-0071809252", 21.72);
+        
+        LibroA libro2= new LibroA("Learning Java by Building Android Games",  
+                              "CreateSpace Independent Publishing", 
+                               autor2, "978-1512108347");
+        
+        
+        System.out.println(libro1.toString());
+        System.out.println(libro2.toString());
+        System.out.println("Precio del libro2: " +libro2.getPrecio());
+        System.out.println("Año edición del libro2: " +libro2.getAñoEdicion()); 
+    }
+}
