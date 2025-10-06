@@ -16,21 +16,20 @@ B- Realice un programa que instancie un hotel, ingrese clientes en distintas hab
 muestre el hotel, aumente el precio de las habitaciones y vuelva a mostrar el hotel.
 NOTAS: Reúse la clase Persona. Para cada método solicitado piense a qué clase debe
 delegar la responsabilidad de la operación.*/
-package Práctica3;
-import MisClases.Cliente;
-import MisClases.Habitacion;
-import MisClases.Hotel;
+package ejercicios;
+import ejercicios.Cliente;
+import ejercicios.Hotel;
 import PaqueteLectura.Lector;
-public class Ejercicio4_3 {
+public class ejercicio4 {
 
     public static void main(String[] args) {
         Hotel hotel1 = new Hotel(5);
         
         Cliente cliente1 = new Cliente("Pilar Leban", 123, 19);
         Cliente cliente2 = new Cliente("Lionel Messi", 321, 38);
-        Cliente cliente3 = new Cliente("Alejandra", 234, 44);
-        Cliente cliente4 = new Cliente("Martin", 456, 55);
-        Cliente cliente5 = new Cliente("Maria", 555, 44);
+        Cliente cliente3 = new Cliente("Paulina Leoz", 234, 44);
+        Cliente cliente4 = new Cliente("Natalia Gentili", 456, 55);
+        Cliente cliente5 = new Cliente("Funes Mori", 555, 44);
         
         hotel1.ingresarClienteEnHabitacion(1, cliente1);
         hotel1.ingresarClienteEnHabitacion(2, cliente2);
