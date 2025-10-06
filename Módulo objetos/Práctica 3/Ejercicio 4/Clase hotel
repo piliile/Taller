@@ -1,0 +1,28 @@
+package MisClases;
+import MisClases.Habitacion;
+public class Hotel {
+    private int cantidadHabitaciones;
+    private Habitacion [] habitaciones;
+    
+    public Hotel(int nH){
+        cantidadHabitaciones = nH;
+        habitaciones = new Habitacion [nH];
+        for (int i = 0; i < cantidadHabitaciones; i++)
+            habitaciones[i] = new Habitacion();
+    }
+    public void ingresarClienteEnHabitacion(int X, Cliente C){
+        habitaciones[X-1].ingresarCliente(C);
+    }
+    
+    public void aumentarPrecio(double montoRecibido){
+        for (int i = 0; i < cantidadHabitaciones; i++)
+            habitaciones[i].aumentarMonto(montoRecibido);
+    }
+    
+    public String toString(){
+        String aux = "";
+        for (int i = 0; i < cantidadHabitaciones; i++)
+            aux += ("La habitación número " + (i + 1) + ", tiene la siguiente información: " + habitaciones[i].toString() + "//");
+        return aux;
+    }
+}
