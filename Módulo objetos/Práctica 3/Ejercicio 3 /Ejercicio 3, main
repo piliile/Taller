@@ -1,0 +1,52 @@
+/* A- Defina una clase para representar estantes. Un estante almacena a lo sumo 20 libros.
+Implemente un constructor que permita iniciar el estante sin libros. Provea métodos para:
+(i) devolver la cantidad de libros que almacenados. 
+(ii) devolver si el estante está lleno.
+(iii) agregar un libro al estante.
+(iv) devolver el libro con un título particular que se recibe.
+B- Realice un programa que instancie un estante. Cargue varios libros. A partir del estante,
+busque e informe el autor del libro “Mujercitas”.
+C- Piense: ¿Qué modificaría en la clase definida para ahora permitir estantes que
+almacenen como máximo N libros? ¿Cómo instanciaría el estante? */
+package Práctica3;
+import MisClases.Estante;
+import MisClases.LibroA;
+import MisClases.AutorA;
+import PaqueteLectura.Lector;
+public class Ejercicio3_3 {
+
+    public static void main(String[] args) {
+        int dimF = 20;
+        Estante estante1 = new Estante();
+        for (int i = 0; i < 2; i++){
+            // primero cargamos el autor
+            System.out.println("Ingrese el nombre del autor: ");
+            String nombre = Lector.leerString();
+            System.out.println("Ingrese la biografia del autor: ");
+            String biografia = Lector.leerString();
+            System.out.println("Ingrese el origen del autor: ");
+            String origen = Lector.leerString();
+            AutorA autor1 = new AutorA(nombre, biografia, origen);
+            // ahora cargamos el libro
+            System.out.println("Ingrese el titulo del libro:");
+            String titulo = Lector.leerString();
+            System.out.println("Ingrese la editorial del libro:");
+            String editorial = Lector.leerString();
+            System.out.println("Ingrese el año de edición del libro:");
+            int añoEdicion = Lector.leerInt();
+            System.out.println("Ingrese el isbn del libro:");
+            String isbn = Lector.leerString();
+            System.out.println("Ingrese el precio del libro:");
+            double precio = Lector.leerDouble();
+            LibroA libro1= new LibroA(titulo, editorial, añoEdicion, autor1, isbn, precio);
+            // agregamos el libro al estante
+            estante1.agregarLibro(libro1);
+        }
+        LibroA libroBuscado = estante1.devolverLibroPorTitulo("Mujercitas");
+        if (libroBuscado != null)
+            System.out.println("El nombre del autor de 'Mujercitas' es: " + libroBuscado.getPrimerAutorNombre() + ".");
+        else
+            System.out.println("El libro 'Mujercitas' no se encuentra en el estante.");
+    }
+    // ejercicio c hecho en apunte.
+}
