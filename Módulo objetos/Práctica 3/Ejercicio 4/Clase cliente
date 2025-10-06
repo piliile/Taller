@@ -1,4 +1,4 @@
-package MisClases;
+package ejercicios;
 
 public class Cliente {
     // definimos los atributos.
@@ -39,7 +39,7 @@ public class Cliente {
     }
     
     public String toString(){
-        String aux = ("Nombre: " + nombre + ", con dni: " + dni + " y edad: " + edad);
+        String aux = ("Nombre: " + nombre + ", con dni: " + dni + " y edad: " + edad + ".");
         return aux;
     }
     
