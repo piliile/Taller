@@ -1,0 +1,52 @@
+package MisClases;
+
+public class Circulo {
+    // definimos los atributos.
+    private double radio;
+    private String colorRelleno;
+    private String colorLinea;
+    
+    // definimos el constructor.
+    public Circulo(double radio, String colorRelleno, String colorLinea) {
+        this.radio = radio;
+        this.colorRelleno = colorRelleno;
+        this.colorLinea = colorLinea;
+    }
+    
+    // métodos getters y setters.
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
+
+    public String getColorRelleno() {
+        return colorRelleno;
+    }
+
+    public void setColorRelleno(String colorRelleno) {
+        this.colorRelleno = colorRelleno;
+    }
+
+    public String getColorLinea() {
+        return colorLinea;
+    }
+
+    public void setColorLinea(String colorLinea) {
+        this.colorLinea = colorLinea;
+    }
+    
+    // métodos que piden.
+    public double calcularPerimetro(){
+        return (2 * Math.PI * this.radio);
+    }
+    
+    public double calcularArea(){
+        double radioAlCuadrado = this.radio * this.radio;
+        return (Math.PI * radioAlCuadrado);
+    }
+    
+}
