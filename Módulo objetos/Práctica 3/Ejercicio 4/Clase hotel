@@ -1,5 +1,5 @@
-package MisClases;
-import MisClases.Habitacion;
+package ejercicios;
+import ejercicios.Habitacion;
 public class Hotel {
     private int cantidadHabitaciones;
     private Habitacion [] habitaciones;
@@ -22,7 +22,7 @@ public class Hotel {
     public String toString(){
         String aux = "";
         for (int i = 0; i < cantidadHabitaciones; i++)
-            aux += ("La habitación número " + (i + 1) + ", tiene la siguiente información: " + habitaciones[i].toString() + "//");
+            aux += ("La habitación número " + (i + 1) + ", tiene la siguiente información: " + habitaciones[i].toString() + "\n");
         return aux;
     }
 }
