@@ -1,5 +1,5 @@
-package MisClases;
-import MisClases.Cliente;
+package ejercicios;
+import ejercicios.Cliente;
 import PaqueteLectura.GeneradorAleatorio;
 public class Habitacion {
     // definimos los atributos.
@@ -42,7 +42,7 @@ public class Habitacion {
     // definimos los métodos que nos piden.
     public void ingresarCliente(Cliente c){
         this.clientecito = c;
-        this.ocupada = true;
+        this.ocupada = true; // importante!!
     }
     public void aumentarMonto(double montoRecibido){
         this.costo = this.costo + montoRecibido;
@@ -50,7 +50,7 @@ public class Habitacion {
     public String toString(){
         String aux = ("El costo de la habitacion es: " + this.costo + ".");
         if (ocupada)
-            aux += ("Y está ocupada, con los siguientes datos del cliente: " + clientecito.toString());
+            aux += (" Y está ocupada, con los siguientes datos del cliente: " + clientecito.toString());
         else
             aux += ("Y está libre.");
         return aux;
