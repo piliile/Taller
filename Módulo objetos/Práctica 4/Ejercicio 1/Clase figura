@@ -1,0 +1,51 @@
+package SeDispone;
+/* La clase FiguraP4 es abstracta porque no tiene sentido crear una FiguraP4 suelta 
+(¿qué área tendría sin conocer la forma?). Además, permite declarar métodos abstractos 
+como calcularArea, calcularPerimetro, los cuales obligan a las subclases a implementarlos.
+También permite incluir código común (atributos, getters/setters, un toString() base) 
+que reutilizarán todas las figuras. */
+public abstract class FiguraP4 {
+    private String colorRelleno;
+    private String colorLinea;
+   
+    public FiguraP4(String unCR, String unCL){
+        setColorRelleno(unCR);
+        setColorLinea(unCL);
+    }
+    
+    public String toString(){
+        /* el toString() hace this.calcularArea(). Importante:
+        Si se hace new CirculoP4(...) y llamamos a toString()
+        → FiguraP4.toString() invoca this.calcularArea()
+        → en tiempo de ejecución Java llama al calcularArea() de CirculoP4 (método sobrescrito).
+        Eso se llama despacho dinámico (polimorfismo). Es por eso que en el toString() de la superclase es
+        válido pedir el área aun cuando la superclase no sabe cómo calcularla: la subclase lo hará. */
+        String aux = "Area: " + this.calcularArea() + ". Perímetro: " + 
+                     this.calcularPerimetro() + "." + "\n" + "Color de relleno: "  + getColorRelleno() + ". Color de linea: " 
+                     + getColorLinea() + ".";            
+        return aux;
+       }
+
+    
+    public String getColorRelleno(){
+        return colorRelleno;       
+    }
+    public void setColorRelleno(String unColor){
+        colorRelleno = unColor;       
+    }
+    public String getColorLinea(){
+        return colorLinea;       
+    }
+    public void setColorLinea(String unColor){
+        colorLinea = unColor;       
+    }
+    // Métodos abstractos para que cada subclase implemente su propia fórmula.
+    public abstract double calcularArea();
+    public abstract double calcularPerimetro();
+   
+    // E).
+    public void despintar(){
+        setColorRelleno("Blanco");
+        setColorLinea("Negro");
+    }
+}
