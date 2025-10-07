@@ -1,0 +1,22 @@
+package MisClases;
+import MisClases.Sistema;
+public class SistemaPorAño extends Sistema{
+
+    public SistemaPorAño(Estacion estacion, int N, int A) {
+        super(estacion, N, A);
+    }
+    
+    public String calcularPromedio(){
+        String aux = "";
+        int año = getA(); 
+        int cantAños = getN();
+        double sumaMeses;  
+        for (int i = 0; i < cantAños; i++) {
+            sumaMeses = 0;
+            for (int j = 0; j < 12; j++)
+                sumaMeses += getTemperaturaC(i + año, j + 1);
+            aux += ("El año: " + (i + año) + ", tiene un promedio de: " + (sumaMeses/12) + "\n");    
+        }    
+        return aux;
+    }
+}
