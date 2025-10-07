@@ -1,0 +1,24 @@
+package MisClases;
+import MisClases.Sistema;
+public class SistemaPorMes extends Sistema{
+    private String[] meses = {
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    
+    public SistemaPorMes(Estacion estacion, int N, int A) {
+        super(estacion, N, A);
+    }
+    public String calcularPromedio(){
+        String aux = "";
+        int año = getA(); 
+        int cantAños = getN();
+        double sumaMes;  
+        for (int j = 0; j < 12; j++) {
+            sumaMes = 0;
+            for (int i = 0; i < cantAños; i++) // recorro todos los años
+               sumaMes += getTemperaturaC(i + año, j + 1); // sumo temperatura del mes j en año i
+            aux += ("El mes: " + (meses[j]) + ", tiene un promedio de: " + sumaMes/cantAños + "\n");    
+        }
+        return aux;
+    }
+}
