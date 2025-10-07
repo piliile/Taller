@@ -1,0 +1,42 @@
+package MisClases;
+import MisClases.Empleado;
+public class Entrenador extends Empleado{
+    private int campeonatosGanados;
+
+    public Entrenador(int campeonatosGanados, String nombre, double sueldoBasico, int antiguedad) {
+        super(nombre, sueldoBasico, antiguedad);
+        this.campeonatosGanados = campeonatosGanados;
+    }
+
+    public int getCampeonatosGanados() {
+        return campeonatosGanados;
+    }
+
+    public void setCampeonatosGanados(int campeonatosGanados) {
+        this.campeonatosGanados = campeonatosGanados;
+    }
+    
+    public String toString(){
+        String aux = super.toString() + "Sueldo a cobrar: " + calcularSueldoACobrar() + ". --- Efectividad: " + calcularEfectividad();
+        return aux;
+    }
+    
+    public double calcularEfectividad(){
+         double promedio = (double) getCampeonatosGanados() / getAntiguedad();
+         return promedio;
+    }
+    
+    public double calcularSueldoACobrar(){
+        double sueldoB = super.calcularSueldoACobrar();
+        int camp = getCampeonatosGanados();
+        if (camp >= 1 && camp <=4)
+            sueldoB += 5000;
+        else
+            if (camp >= 5 && camp <=10)
+                sueldoB += 30000;
+            else
+                if (camp > 10) // igual no se si hace falta este if, ya ocupamos todos los casos o no? capaz puede ser 0.
+                    sueldoB += 50000;
+        return sueldoB;
+    }
+}
