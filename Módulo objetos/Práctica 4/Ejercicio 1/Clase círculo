@@ -1,0 +1,34 @@
+package MisClases;
+
+import SeDispone.FiguraP4;
+
+public class CirculoP4 extends FiguraP4{ 
+    private double radio;
+
+    public CirculoP4(double radio, String unColorRelleno, String unColorLinea) {
+        super(unColorRelleno, unColorLinea);
+        this.radio = radio;
+    }
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
+    
+    public double calcularArea(){
+        double radioAlCuadrado = getRadio() * getRadio();
+        return (Math.PI * radioAlCuadrado);
+    }
+    public double calcularPerimetro(){
+        return (2 * Math.PI * getRadio());
+    }
+    
+    public String toString(){
+        String aux = super.toString() + "Radio: " + getRadio();
+        return aux;
+    }
+    
+}
