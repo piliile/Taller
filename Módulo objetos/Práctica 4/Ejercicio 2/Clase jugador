@@ -1,0 +1,46 @@
+package MisClases;
+import MisClases.Empleado;
+public class Jugador extends Empleado{
+    private int partidosJugados;
+    private int goles;
+
+    public Jugador(int partidosJugados, int goles, String nombre, double sueldoBasico, int antiguedad) {
+        super(nombre, sueldoBasico, antiguedad);
+        setPartidosJugados(partidosJugados);
+        setGoles(goles);
+    }
+
+    public int getPartidosJugados() {
+        return partidosJugados;
+    }
+
+    public void setPartidosJugados(int partidosJugados) {
+        this.partidosJugados = partidosJugados;
+    }
+
+    public int getGoles() {
+        return goles;
+    }
+
+    public void setGoles(int goles) {
+        this.goles = goles;
+    }
+    
+    public String toString(){
+        String aux = super.toString() + "Sueldo a cobrar: " + calcularSueldoACobrar() + ". --- Efectividad: " + calcularEfectividad();
+        return aux;
+    }
+    
+    public double calcularEfectividad(){
+         double promedio = (double) getGoles()/getPartidosJugados();
+         return promedio;
+    }
+    
+    public double calcularSueldoACobrar(){
+        double sueldoB = super.calcularSueldoACobrar();
+        double efectividad = calcularEfectividad();
+        if (efectividad > 0.5) 
+            sueldoB += getSueldoBasico();
+        return sueldoB;
+    }
+}
