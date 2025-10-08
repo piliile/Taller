@@ -1,5 +1,5 @@
-package MisClases;
-import MisClases.Sistema;
+package practica4;
+import practica4.Sistema;
 public class SistemaPorAño extends Sistema{
 
     public SistemaPorAño(Estacion estacion, int N, int A) {
