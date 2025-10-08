@@ -1,4 +1,4 @@
-package MisClases;
+package practica4;
 
 public class Estacion {
     private String nombre;
