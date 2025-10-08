@@ -52,7 +52,7 @@ import MisClases.Sistema;
 import PaqueteLectura.GeneradorAleatorio;
 public class Ejercicio4_4 {
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         GeneradorAleatorio.iniciar();
         
         Estacion estacion1 = new Estacion ("La Plata", -34.921, -57.955);
@@ -60,8 +60,8 @@ public class Ejercicio4_4 {
         double tempe;
         for (int i = 0; i < 3; i++){
             int año = 2021 + i;
-            for (int j = 0; j < 12; j++) {
-                int mes = j + 1;
+            for (int j = 1; j <= 12; j++) {
+
                 tempe = GeneradorAleatorio.generarDouble(40);
                 sistemaAño.setTemperaturaB(año, mes, tempe);
             }
