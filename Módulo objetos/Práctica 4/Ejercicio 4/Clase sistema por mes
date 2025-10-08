@@ -1,5 +1,5 @@
-package MisClases;
-import MisClases.Sistema;
+package practica4;
+import practica4.Sistema;
 public class SistemaPorMes extends Sistema{
     private String[] meses = {
     "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
