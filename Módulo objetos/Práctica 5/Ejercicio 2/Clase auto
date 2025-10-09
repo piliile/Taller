@@ -1,0 +1,32 @@
+package MisClases2;
+
+public class Auto {
+    private String nombreDueño;
+    private int patente;
+
+    public Auto(String nombreDueño, int patente) {
+        this.nombreDueño = nombreDueño;
+        this.patente = patente;
+    }
+
+    public String getNombreDueño() {
+        return nombreDueño;
+    }
+
+    public void setNombreDueño(String nombreDueño) {
+        this.nombreDueño = nombreDueño;
+    }
+
+    public int getPatente() {
+        return patente;
+    }
+
+    public void setPatente(int patente) {
+        this.patente = patente;
+    }
+    
+    public String toString(){
+        String aux = "Nombre dueño: " + this.nombreDueño + ". Patente: " + this.patente + ". " + "\n";
+        return aux;
+    }
+}
