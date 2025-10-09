@@ -1,0 +1,73 @@
+package MisClases;
+
+public class Investigador {
+    private String nombre;
+    private int categoria; 
+    private String especialidad;
+    private Subsidio [] pedidos;
+    private int cantidadSubsidios;
+    
+    public Investigador(String nombre, int categoria, String especialidad) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.especialidad = especialidad;
+        this.pedidos = new Subsidio [5];
+        this.cantidadSubsidios = 0;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+    
+    public void agregarSubsidio(Subsidio unSubsidio){ // agrega un subsidio al investigador.
+        if (this.cantidadSubsidios < 5) {
+            this.pedidos[cantidadSubsidios] = unSubsidio;
+            this.cantidadSubsidios++;
+        }
+    }
+    public double dineroTotalOtorgado(){ // devuelve el monto total otorgado en subsidios del proyecto
+    // tener en cuenta todos los subsidios otorgados de todos los investigadores.
+        double aux = 0;
+        int i = 0;
+        while (i < this.cantidadSubsidios) {
+            if (this.pedidos[i].isOtorgado() == true)
+                aux += this.pedidos[i].getMonto();
+            i++;
+        }
+        return aux;
+    }
+    
+    public void otorgarSubsidios(){
+        for (int i = 0; i < this.cantidadSubsidios; i++){
+            if (!this.pedidos[i].isOtorgado())
+                this.pedidos[i].setOtorgado(true);
+        }
+    }
+    
+    public String toString() {
+        String auxi = ("\n" + "Nombre: " + this.nombre + ". Categoría: " + this.categoria + ". Especialidad: " + this.especialidad + 
+        "." + "\n" + "Total dinero de subsidios: " + this.dineroTotalOtorgado());
+        return auxi;
+    }
+
+}
