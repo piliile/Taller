@@ -1,0 +1,125 @@
+package MisClases2;
+
+public class Estacionamiento {
+    private String nombre;
+    private int direccion;
+    private int horaApertura;
+    private int horaCierre;
+    private Auto [][] lugares;
+    private int cantidadPisos;
+    private int cantidadPlazas;
+
+    public Estacionamiento(String unNombre, int unaDireccion){
+        this.nombre = unNombre;
+        this.direccion = unaDireccion;
+        this.horaApertura = 8;
+        this.horaCierre = 21;
+        this.cantidadPisos = 5;
+        this.cantidadPlazas = 10;
+        this.lugares = new Auto[cantidadPisos][cantidadPlazas];
+        this.inicializarMatriz(cantidadPisos, cantidadPlazas);
+    }
+    
+    
+    public Estacionamiento(String nombre, int direccion, int horaApertura, int horaCierre, int numeroPisos, int numeroPlazas) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.horaApertura = horaApertura;
+        this.horaCierre = horaCierre;
+        this.cantidadPisos = numeroPisos;
+        this.cantidadPlazas = numeroPlazas;
+        this.lugares = new Auto[cantidadPisos][cantidadPlazas];
+        this.inicializarMatriz(numeroPisos, numeroPlazas);
+    }
+
+    public void inicializarMatriz(int N, int M){
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < M; j++)
+                this.lugares[i][j] = null;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(int direccion) {
+        this.direccion = direccion;
+    }
+
+    public int getHoraApertura() {
+        return horaApertura;
+    }
+
+    public void setHoraApertura(int horaApertura) {
+        this.horaApertura = horaApertura;
+    }
+
+    public int getHoraCierre() {
+        return horaCierre;
+    }
+
+    public void setHoraCierre(int horaCierre) {
+        this.horaCierre = horaCierre;
+    }
+
+    public void agregarAuto(Auto unAuto, int x, int y){
+        this.lugares[x - 1][y - 1] = unAuto;
+    }
+    
+    public String buscoPatente(int numPat){
+        String aux;
+        int numPisoPat = -1; int numPlazaPat = -1;
+        int i = 0; 
+        boolean ok = false;
+        while ((i < this.cantidadPisos) && (!ok)) {
+            int j = 0;
+            while ((j < this.cantidadPlazas) && !ok) {
+                if ((this.lugares[i][j] !=null) && 
+                (this.lugares[i][j].getPatente() == numPat)) { 
+                    // si la posicion NO es null y la posicion es la patente, la encontramos y ponemos true.
+                    ok = true;
+                    numPisoPat = i; numPlazaPat = j; // asignamos posiciones donde encontramos la patente.
+                }
+                else   
+                    j++; // si no encontramos nada sumamos j
+            }
+            i++;
+        }
+        if (ok)
+            aux = "La patente se encontró en el N° de piso: " + numPisoPat + ", N° plaza: " + numPlazaPat;
+        else    
+            aux = "Auto inexistente";
+        return aux;
+    }
+    
+    public String toString(){
+        String aux = "";
+        for (int i = 0; i < this.cantidadPisos; i++)
+            for (int j= 0; j < this.cantidadPlazas; j++) {
+                aux += "------- Piso: " + (i + 1) + ". Plaza: " + (j + 1) + ". -------" + "\n";
+                if (this.lugares[i][j] != null)
+                    aux += this.lugares[i][j].toString();
+                else
+                    aux += "Libre." + "\n";
+            }
+        return aux;
+    }
+    
+    public int obtenerAutosEnPlaza(int Y){ // asumimos que Y esta en el rango SUPONGO
+        int cantidadEnPlaza = 0;
+        for (int i = 0; i < this.cantidadPisos; i++)
+            if (this.lugares[i][Y-1] != null)
+                cantidadEnPlaza++;
+        return cantidadEnPlaza;
+    }
+    
+    
+}
