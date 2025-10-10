@@ -1,0 +1,89 @@
+package parcialTurnoC16_10_2024;
+
+public class Plataforma {
+    private String nombre;
+    private int cantidadSus;
+    private Estreno [][] agenda;
+    private int cantidadCategorias; // a lo sumo hay 12 categorias.
+    private int dimLMes; // sirve para el inciso 1A.
+    
+    public Plataforma(String nombre, int cantidadSus, int cantidadCategorias) {
+        this.nombre = nombre;
+        this.cantidadSus = cantidadSus;
+        this.cantidadCategorias = cantidadCategorias;
+        this.agenda = new Estreno[cantidadCategorias][12];
+        for (int i = 0; i < cantidadCategorias; i ++)
+            for (int j = 0; j < 12; j++)
+                this.agenda[i][j] = null; // inicialmente la plataforma no tiene estrenos registrados.
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCantidadSus() {
+        return cantidadSus;
+    }
+
+    public void setCantidadSus(int cantidadSubs) {
+        this.cantidadSus = cantidadSubs;
+    }
+
+    public int getCantidadCategorias() {
+        return cantidadCategorias;
+    }
+
+    public void setCantidadCategorias(int cantidadCategorias) {
+        this.cantidadCategorias = cantidadCategorias;
+    }
+    
+    public void registrarEstreno(Estreno unEstreno, int X){ // X = una categoría X
+        int mes = 0;
+        // Avanza mientras no se acaben los 12 meses y la posición no esté vacía
+        while (mes < 12 && this.agenda[X - 1][mes] != null) 
+            mes++;
+        
+        // Si encontró un lugar libre dentro de los 12 meses, lo asigna
+        if (mes < 12) {
+            this.agenda[X - 1][mes] = unEstreno;
+        }
+    }
+    
+    public String listadoEstrenosDeX(int X){
+        String aux = "";
+        int mes = 0;
+        while ((mes < 12) && (this.agenda[X - 1][mes] != null)){
+            aux += this.agenda[X - 1][mes].toString() + "\n";
+            mes++;
+        }
+        return aux;
+    }
+    
+    public double calcularGananciaTotal(){
+        double total = 0; int mes = 0;
+        for (int i = 0; i < this.cantidadCategorias; i++)
+            while ((mes < 12) && (this.agenda[i][mes] != null)){
+                total += this.agenda[i][mes].calcularGananciaEstrenos();
+                mes++;
+            }
+        return total;
+    }
+    
+    public String toString(){
+        String auxi = "Plataforma " + this.getNombre() + ", cantidad de suscriptores: " + this.getCantidadSus() + ". ";
+        int mes;
+        for (int i = 0; i < this.getCantidadCategorias(); i++){
+            mes = 0;
+            while ((mes < 12) && (this.agenda[i][mes] != null)){
+                auxi += "Categoría: " + (i + 1) + "\n" + "Mes: " + (mes + 1) + "\n" + this.agenda[i][mes].toString();
+                mes++;
+            }
+        }
+        return auxi;
+        
+    }
+}
