@@ -1,0 +1,60 @@
+package parcialTurnoC16_10_2024;
+
+public class Estreno {
+    private String titulo;
+    private String contenido; // serie o pelicula;
+    private double recaudacion;
+    private int cantidadVisualizaciones;
+
+    public Estreno(String titulo, String contenido, double recaudacion, int cantidadVisualizaciones) {
+        this.titulo = titulo;
+        this.contenido = contenido;
+        this.recaudacion = recaudacion;
+        this.cantidadVisualizaciones = cantidadVisualizaciones;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public double getRecaudacion() {
+        return recaudacion;
+    }
+
+    public void setRecaudacion(double recaudacion) {
+        this.recaudacion = recaudacion;
+    }
+
+    public int getCantidadVisualizaciones() {
+        return cantidadVisualizaciones;
+    }
+
+    public void setCantidadVisualizaciones(int cantidadVisualizaciones) {
+        this.cantidadVisualizaciones = cantidadVisualizaciones;
+    }
+    
+    public String toString(){
+        String auxi = "Título: " + this.getTitulo() + ", tipo de contenido: " + this.getContenido()
+            + ", recaudación: " +  this.getRecaudacion() + ", cantidad de visualizaciones: " + this.getCantidadVisualizaciones() + ".";
+        return auxi;
+    }
+    
+    public double calcularGananciaEstrenos(){
+        double suma = 0;
+        if (this.contenido.equals("Serie"))
+            suma = this.getRecaudacion() / 2;
+        return suma;
+    }
+}
