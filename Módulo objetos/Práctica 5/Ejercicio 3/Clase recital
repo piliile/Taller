@@ -1,0 +1,41 @@
+package MisClases3;
+
+public abstract class Recital {
+    private String nombreBanda;
+    private String [] temas;
+    private int cantidadTemas;
+    private int dimL;
+    
+    public Recital(String nombreBanda, int unaCantidadDeTemas) {
+        this.nombreBanda = nombreBanda;
+        this.cantidadTemas = unaCantidadDeTemas;
+        this.dimL = 0;
+        this.temas = new String[unaCantidadDeTemas];
+    }
+    
+    
+    public String getNombreBanda() {
+        return nombreBanda;
+    }
+
+    public void setNombreBanda(String nombreBanda) {
+        this.nombreBanda = nombreBanda;
+    }
+    
+    
+    public void agregarTema(String unTema){
+        if (this.dimL < this.cantidadTemas) {
+            temas[dimL] = unTema;
+            dimL++;
+        }
+    }
+    public String actuar(){
+        String aux = "";
+        for (int i = 0; i < this.dimL; i++)
+            aux += ("\n" + "Y ahora tocaremos..." + temas[i]);
+        return aux;
+    }
+    
+    public abstract double calcularCosto();
+    
+}
