@@ -1,0 +1,64 @@
+package MisClases3;
+
+public class Gira extends Recital {
+    private String nombreGira;
+    private Fecha [] fechas;
+    private int cantidadFechas;
+    private int proximaFecha; // posicion del arreglo fechas, en la que se encuentra la proxima fecha.
+    private int dimL;
+    
+    public Gira(String nombreGira, int cantidadFechas, String nombreBanda, int unaCantidadDeTemas) {
+        super(nombreBanda, unaCantidadDeTemas);
+        this.nombreGira = nombreGira;
+        this.cantidadFechas = cantidadFechas;
+        this.proximaFecha = 0;
+        this.dimL = 0;
+        this.fechas = new Fecha [cantidadFechas];
+    }
+
+    public String getNombreGira() {
+        return nombreGira;
+    }
+
+    public void setNombreGira(String nombreGira) {
+        this.nombreGira = nombreGira;
+    }
+
+    public int getCantidadFechas() {
+        return cantidadFechas;
+    }
+
+    public void setCantidadFechas(int cantidadFechas) {
+        this.cantidadFechas = cantidadFechas;
+    }
+
+    public int getProximaFecha() {
+        return proximaFecha;
+    }
+
+    public void setProximaFecha(int proximaFecha) {
+        this.proximaFecha = proximaFecha;
+    }
+    
+    public void agregarFecha(Fecha unaFecha){
+        if (this.dimL < this.cantidadFechas){
+            this.fechas[dimL] = unaFecha;
+            dimL++;
+        }
+    }
+    
+    public String actuar(){
+        String aux = "";
+        for (int j = 0; j < this.dimL; j++){ // raro, pedir help
+            aux += "Buenas noches..." + this.fechas[j].getCiudad();
+            aux += super.actuar();
+        }
+        return aux;
+    }
+    
+    @Override
+    public double calcularCosto(){
+        return this.dimL * 30000;
+    }
+    
+}
