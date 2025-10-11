@@ -1,0 +1,49 @@
+package parcialturnoCtema1_10_10_23;
+
+public class Venta {
+    private int dniCliente;
+    private int cantidadLitros;
+    private double monto;
+    private String medioDePago;
+
+    public Venta(int dniCliente, int cantidadLitros, double monto, String medioDePago) {
+        this.dniCliente = dniCliente;
+        this.cantidadLitros = cantidadLitros;
+        this.monto = monto;
+        this.medioDePago = medioDePago;
+    }
+
+    public int getDniCliente() {
+        return dniCliente;
+    }
+
+    public void setDniCliente(int dniCliente) {
+        this.dniCliente = dniCliente;
+    }
+
+    public int getCantidadLitros() {
+        return cantidadLitros;
+    }
+
+    public void setCantidadLitros(int cantidadLitros) {
+        this.cantidadLitros = cantidadLitros;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public String getMedioDePago() {
+        return medioDePago;
+    }
+
+    public void setMedioDePago(String medioDePago) {
+        this.medioDePago = medioDePago;
+    }
+    
+    
+}
