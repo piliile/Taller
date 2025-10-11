@@ -1,0 +1,38 @@
+package parcialturnoH15_10_2024;
+import PaqueteLectura.Lector;
+import PaqueteLectura.GeneradorAleatorio;
+public class Parcial {
+
+    public static void main(String[] args) {
+        GeneradorAleatorio.iniciar();
+        
+        int cantidadGondolas = 2;//GeneradorAleatorio.generarInt(10) + 1; 
+        System.out.println("El número de gondolas es:  "+ cantidadGondolas);
+        int cantidadEstantes = 2; //GeneradorAleatorio.generarInt(10) + 1; 
+        System.out.println("El número de estantes es:  "+ cantidadEstantes);
+        System.out.println("Ingrese el nombre del supermercado y la dirección: ");
+        Supermercado supermer = new Supermercado(Lector.leerString(), Lector.leerString(), 
+                cantidadGondolas, cantidadEstantes);
+        
+        // (int codigo, String nombre, String marca, int cantidadUnidades, double precio)
+        
+        for (int i = 0; i < cantidadGondolas; i++)
+            for (int j = 0; j < cantidadEstantes; j++){    
+                System.out.println("Ingrese el nombre del producto y la marca: ");
+                Producto unProducto = new Producto(GeneradorAleatorio.generarInt(500), Lector.leerString(), Lector.leerString(), 
+                GeneradorAleatorio.generarInt(30), GeneradorAleatorio.generarDouble(1000) + 500);
+                supermer.registrarProducto(unProducto);
+            }
+        
+        System.out.println("Ingrese un número de gondola (tenga en cuenta que hay " + cantidadGondolas + " gondolas) y una marca," 
+           + " para listar los productos que hay en dicha gondola: "); 
+        int unaGondola = Lector.leerInt();
+        String unaMarca = Lector.leerString();
+        System.out.println("El listado es el siguiente: " + "\n" + supermer.listarProductosGX(unaGondola, unaMarca));
+        System.out.println("El número de gondola con mayor cantidad total de unidades exhibidas es: " + (supermer.numeroGondolaMayor() + 1));
+        
+        System.out.println("El supermercado tiene la siguiente información: ");
+        System.out.println(supermer.toString());
+    }
+    
+}
