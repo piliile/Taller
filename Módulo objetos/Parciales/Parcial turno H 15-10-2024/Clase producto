@@ -1,0 +1,45 @@
+package parcialturnoH15_10_2024;
+
+public class Producto {
+    private int codigo;
+    private String nombre;
+    private String marca;
+    private int cantidadUnidades;
+    private double precio;
+
+    public Producto(int codigo, String nombre, String marca, int cantidadUnidades, double precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.marca = marca;
+        this.cantidadUnidades = cantidadUnidades;
+        this.precio = precio;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getCantidadUnidades() {
+        return cantidadUnidades;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    
+    public String toString(){
+        String auxi =  "Producto{" + this.getCodigo()+ " - " + this.getNombre() + " - " + this.getMarca() + " - " + this.getCantidadUnidades() 
+                + " - " + this.getPrecio() + "}" + "\n";
+        return auxi;
+    }
+
+}
