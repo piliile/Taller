@@ -1,0 +1,77 @@
+package parcialturnoH15_10_2024;
+
+public class Supermercado {
+    private String nombreSuper;
+    private String direccion;
+    private Producto [][] estructura;
+    private int cantidadGondolas;
+    private int cantidadEstantes;
+    private int G;
+    private int E;
+    
+    public Supermercado(String nombreSuper, String direccion, int unaCantidadG, int unaCantidadE) {
+        this.nombreSuper = nombreSuper;
+        this.direccion = direccion;
+        this.cantidadGondolas = unaCantidadG;
+        this.cantidadEstantes = unaCantidadE;
+        this.estructura = new Producto[unaCantidadG][unaCantidadE];
+        this.G = 0;
+        this.E = 0;
+        for (int i = 0;i < unaCantidadG; i++)
+            for (int j = 0; j < unaCantidadE; j++)
+                this.estructura[i][j] = null; 
+    }
+
+    public String getNombreSuper() {
+        return nombreSuper;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+    
+    public void registrarProducto(Producto unProducto){
+        if (this.G < this.cantidadGondolas) {
+            this.estructura[this.G][this.E] = unProducto;
+            this.E ++;
+            if (this.E == this.cantidadEstantes){
+                this.E = 0;
+                this.G++;
+            }
+        }
+        else
+           System.out.println("No hay más espacio.");
+    } 
+    
+    public String listarProductosGX(int GX, String M){
+        String aux = "";
+        for (int j = 0; j < this.cantidadEstantes; j++)
+            if (this.estructura[GX - 1][j].getMarca().equals(M)) // le resto?
+                aux += this.estructura[GX - 1][j].toString();
+        return aux;
+    }
+           
+    public int numeroGondolaMayor(){
+        int numGondMax = -1; int maximo = -1;
+        for (int i = 0; i < this.cantidadGondolas; i++){
+            int auxSuma = 0;
+            for (int j = 0; j < this.cantidadEstantes; j++)
+                auxSuma += this.estructura[i][j].getCantidadUnidades();
+            if (auxSuma > maximo){
+                numGondMax = i;
+                maximo = auxSuma;
+            }   
+        }
+        return numGondMax;
+    }
+            
+    public String toString(){
+        String aux = "Supermercado: " + this.getNombreSuper() + "; " + this.getDireccion();
+        for (int i = 0; i < this.cantidadGondolas; i++){
+            aux += "Góndola " + (i + 1) + ":" + "\n";
+            for (int j = 0; j < this.cantidadEstantes; j++)
+                aux += "Estante " + (j + 1) + ": {" + this.estructura[i][j].toString() + "\n"; 
+        }
+        return aux;           
+    }
+}
