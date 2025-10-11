@@ -1,0 +1,44 @@
+package parcialturnoF8_10_2024;
+
+public class Ticket {
+    private int numeroTicket;
+    private int dniCliente;
+    private int cantidadLibrosComprados;
+    private double monto;
+    private String pago;
+
+    public Ticket(int numeroTicket, int dniCliente, int cantidadLibrosComprados, double monto, String pago) {
+        this.numeroTicket = numeroTicket;
+        this.dniCliente = dniCliente;
+        this.cantidadLibrosComprados = cantidadLibrosComprados;
+        this.monto = monto;
+        this.pago = pago;
+    }
+
+    public int getNumeroTicket() {
+        return numeroTicket;
+    }
+
+    public int getDniCliente() {
+        return dniCliente;
+    }
+
+    public int getCantidadLibrosComprados() {
+        return cantidadLibrosComprados;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public String getPago() {
+        return pago;
+    }
+    
+    public String toString(){
+        String auxiliar = this.getNumeroTicket() + " " + this.getDniCliente() + " " + this.getCantidadLibrosComprados()
+                + " " + this.getMonto() + " " + this.getPago() + "]";
+        return auxiliar;
+    }
+    
+}
