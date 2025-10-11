@@ -1,0 +1,27 @@
+package parcialturnoF8_10_2024;
+import PaqueteLectura.GeneradorAleatorio;
+import PaqueteLectura.Lector;
+public class Parcial {
+
+    public static void main(String[] args) {
+      Libreria lib = new Libreria("Los libritos", 3);
+      
+      while (GeneradorAleatorio.generarInt(14) < 13) {
+          //(int N, int dniCli, int cantLibrosComp, double montoAb, String formaPago
+          lib.agregarTicketCajaN(GeneradorAleatorio.generarInt(4), GeneradorAleatorio.generarInt(10000000)+500, 
+          GeneradorAleatorio.generarInt(10), GeneradorAleatorio.generarDouble(5000)+500, GeneradorAleatorio.generarString(5));
+      }
+      System.out.println("Así está la libreria: ");
+      System.out.println(lib.toString());
+      System.out.println("Marcar en no disponiblelas cajas (ingrese un valor X) que hayan vendido menos de X libros");
+      int X = GeneradorAleatorio.generarInt(10);
+      lib.marcarNoDisponiblesLasCajas(X);
+      
+      System.out.println("El ticket con mayor monto es: " + lib.mayorTicket());
+      
+      System.out.println("Última impresión de la librería: ");
+      System.out.println(lib.toString());
+      
+    }
+    
+}
