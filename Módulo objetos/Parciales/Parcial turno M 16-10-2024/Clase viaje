@@ -1,4 +1,4 @@
-package parcialViajeEscolar;
+package parcialturnoM16_10_2024;
 public class Viaje {
     private String nombreColegio;
     private String fecha;
@@ -31,5 +31,31 @@ public class Viaje {
         if (!this.minibuses[0].asignarPolizaAlAlumno(dniAlum, polizaSeg))
             this.minibuses[1].asignarPolizaAlAlumno(dniAlum, polizaSeg);
     }
+ 
+    public int retornoCantidadAlumnosObra(String obraSocial){
+        int aux = 0;
+        aux += this.minibuses[0].getCantAlumnosMismaObra(obraSocial);
+        aux += this.minibuses[1].getCantAlumnosMismaObra(obraSocial);
+        return aux;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+    
+    public int getCantidadAlumnosTotal(){
+        int aux = 0;
+        aux += this.minibuses[0].getTotalAlumnos();
+        aux += this.minibuses[1].getTotalAlumnos();
+        return aux;
+    }
+    
+    public String toString(){
+        String aux  = "";
+        aux = "Viaje escolar: FECHA: <" + this.getFecha() + ">, " + "CANTIDAD ALUMNOS EN TOTAL: <" + this.getCantidadAlumnosTotal() + ">" + "\n";
+        aux += "Minibus 1: <" + this.minibuses[0].toString() + "\n";
+        aux += "Minibus 2: <" + this.minibuses[1].toString();
+        return aux;
+    }   
     
 }
