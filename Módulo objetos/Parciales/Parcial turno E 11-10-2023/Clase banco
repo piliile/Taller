@@ -1,0 +1,67 @@
+package parcialturnoEtema1_11_10_2023;
+
+public abstract class Banco {
+    private String nombre;
+    private int cantidadEmpleados;
+    private Cuenta [] infoCuentas;
+    private int cantidadCuentas; // seria la dimlog
+    private int dimF;
+    
+    public Banco(String nombre, int cantidadEmpleados, int N) { // N seria la dimfis
+        this.nombre = nombre;
+        this.cantidadEmpleados = cantidadEmpleados;
+        this.cantidadCuentas = 0;
+        this.dimF = N;
+        infoCuentas = new Cuenta[N];
+        for (int i = 0; i < this.dimF; i++)
+            infoCuentas[i] = null;
+    }
+
+    public Cuenta[] getInfoCuentas() {
+        return infoCuentas;
+    }
+
+    public int getCantidadCuentas() {
+        return cantidadCuentas;
+    }
+    
+    public int incrementoCantidadCuentas(){
+        return cantidadCuentas++;
+    }
+
+    public int getDimF() {
+        return dimF;
+    }
+    
+    public abstract boolean agregarCuenta(Cuenta unaCuenta);
+    
+    public Cuenta obtenerCuenta(int unCbu){
+        Cuenta unaCuenta = null;
+        boolean encontre = false;
+        int i = 0;
+        while (i < getCantidadCuentas() && (!encontre)){
+            if ((infoCuentas[i] != null) && (infoCuentas[i].getCbu() == unCbu)){
+                unaCuenta = infoCuentas[i];
+                encontre = true;
+            }
+            else
+                i++;
+        }
+        return unaCuenta;
+    }
+    
+    public void depositarDinero(int unCbu, double unMonto){
+        int i = 0;
+        boolean encontreCbu = false;
+        while ((i < getCantidadCuentas()) && (!encontreCbu)){
+            if ((infoCuentas[i] != null) && (unCbu == infoCuentas[i].getCbu())){
+                encontreCbu = true;
+                infoCuentas[i].setMonto(unMonto);
+            }
+            else
+                i++;
+        }
+    }
+    
+    public abstract boolean puedeRecibirTarjeta(int unCbu);
+}
