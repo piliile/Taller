@@ -1,0 +1,43 @@
+package parcialturnoEtema1_11_10_2023;
+
+public class Tradicional extends Banco {
+    private String direccion;
+    private String localidad;
+    private int cantidadCuentasEnUDSAbiertas;
+
+    public Tradicional(String direccion, String localidad, String nombre, int cantidadEmpleados) {
+        super(nombre, cantidadEmpleados, 100);
+        this.direccion = direccion;
+        this.localidad = localidad;
+        this.cantidadCuentasEnUDSAbiertas = 0; // PUEDE TENER MAX 100 CUENTAS ABIERTAS.
+    }
+    
+    public boolean agregarCuenta(Cuenta unaCuenta){
+        boolean ok = false;
+        if (getCantidadCuentas() < 100){
+            getInfoCuentas()[getCantidadCuentas()] = unaCuenta;
+            incrementoCantidadCuentas();
+            ok = true;
+        }
+        return ok;
+    }
+    
+    public boolean puedeRecibirTarjeta(int unCbu){
+        boolean encontre = false;
+        int i = 0;
+        boolean pude = false;
+        while ((i < getCantidadCuentas()) && (!encontre)){
+            if ((getInfoCuentas()[i] != null) && (getInfoCuentas()[i].getCbu() == unCbu)){
+                encontre = true;
+                if ((getInfoCuentas()[i].getMoneda().equals("Dólares")) && (getInfoCuentas()[i].getMonto() > 500)) 
+                    pude = true;
+                else
+                    if (getInfoCuentas()[i].getMoneda().equals("Pesos") && (getInfoCuentas()[i].getMonto() > 70000))
+                        pude = true;
+            }
+            else
+                i++;
+        }
+        return pude;
+    }
+}
