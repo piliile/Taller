@@ -1,0 +1,33 @@
+package parcialturnoM16_10_2024;
+import PaqueteLectura.Lector;
+import PaqueteLectura.GeneradorAleatorio;
+public class Parcial {
+
+    public static void main(String[] args) {
+     Minibus minibus1 = new Minibus("AB123CD", 20); // recibe patente y capacidad maxima.
+     Minibus minibus2 = new Minibus("AB456CD", 28); // recibe patente y capacidad maxima.
+     
+     // el viaje recibe nombre de colegio, fecha, destino, min1, min2.
+     System.out.println("Ingrese el nombre del colegio y el destino: ");
+     Viaje via = new Viaje(Lector.leerString() ,"25/10/2024", Lector.leerString(), minibus1, minibus2);
+     
+     // el alumno recibe dni, nombre, poliza, obra.
+     GeneradorAleatorio.iniciar();
+     int cantidadAlumnos = 5; //GeneradorAleatorio.generarInt(49); // hay un total de capacidad de 48 alumnos
+     System.out.println("La cantidad de alumnos que asistirán al viaje es de: " + cantidadAlumnos + " alumnos.");
+     for (int i = 0; i < cantidadAlumnos; i++){
+        System.out.println("Ingrese dni de alumno, apellido y nombre, poliza y obra social (si es que tiene): ");
+        Alumno unAlumno = new Alumno(Lector.leerInt(), Lector.leerString(), Lector.leerInt(), Lector.leerString());
+        via.agregarAlumnoYDevolverPatente(unAlumno);
+     }
+     // solo imprimo el viaje para ver si se cambió la poliza del alumno    
+     System.out.println("Por el momento el viaje está así: " + "\n" + via.toString()); 
+     
+     System.out.println("Ingrese el dni de alumno y la poliza que le quiere asignar a dicho alumno: ");
+     via.setPoliza(Lector.leerInt(), Lector.leerInt());
+     
+     System.out.println("La representación del viaje es la siguiente: " + "\n" + via.toString());
+    }
+   
+    
+}
