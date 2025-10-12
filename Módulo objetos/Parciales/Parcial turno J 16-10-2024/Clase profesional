@@ -1,0 +1,37 @@
+package parcialturnoJ16_10_2024;
+
+public class Profesional extends Sitio {
+    private TorneoProfesional[] infoTorneos;
+    private int cantidadTorneos;
+    private int dimF;
+        
+    public Profesional(String nombre, String direccion, int N) {
+        super(nombre, direccion);
+        this.cantidadTorneos = 0;
+        this.infoTorneos = new TorneoProfesional[N];
+        this.dimF = N;
+        for (int i = 0; i < N; i++)
+            this.infoTorneos[i] = null;
+    }
+    
+    public boolean registrarTorneoProfesional(TorneoProfesional unTorneo){
+        boolean pude = false;
+        if (this.cantidadTorneos < this.dimF){
+            this.infoTorneos[this.cantidadTorneos] = unTorneo;
+            pude = true;
+            this.cantidadTorneos++;
+        }
+        return pude;
+    }
+    
+    public double cotizarSitio(){
+        double montoIns = 0; double montoPrem = 0;
+        for (int i = 0; i < this.cantidadTorneos; i++){
+            montoIns += this.infoTorneos[i].getMontoInscripciones();
+            montoPrem += this.infoTorneos[i].getMontoPremios();
+        }
+        return (1000 * this.cantidadTorneos) + (montoIns - montoPrem);
+    }
+    
+    
+}
