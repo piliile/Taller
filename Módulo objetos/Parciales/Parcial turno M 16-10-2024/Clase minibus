@@ -1,0 +1,45 @@
+package parcialViajeEscolar;
+public class Minibus {
+    private String patente;
+    private int capacidad;
+    private Alumno [] infoAlumnos;
+    private int cantidadAlumnos; // dimL de alumnos
+
+    public Minibus(String patente, int N) { // N CAPACIDAD MAXIMA
+        this.patente = patente;
+        this.capacidad = N;
+        this.cantidadAlumnos = 0;
+        this.infoAlumnos = new Alumno [N];
+        for (int i = 0; i < N; i++)
+            this.infoAlumnos[i] = null;
+    }
+    
+    public void agregarAlumno(Alumno A) {
+        if (this.cantidadAlumnos < this.capacidad) {
+            this.infoAlumnos[this.cantidadAlumnos] = A;
+            this.cantidadAlumnos++;
+        }
+    }
+
+    public String getPatente() {
+        return patente;
+    }
+    
+    public int lugaresLibres(){
+        int aux = 0;
+        return aux = this.capacidad - this.cantidadAlumnos;
+    }
+    
+    public boolean asignarPolizaAlAlumno(int dniAlumno, int polizaSeg){
+        int i = 0; 
+        while ((i < this.cantidadAlumnos) && (dniAlumno != this.infoAlumnos[i].getDni()))
+            i++;
+        if (i < this.cantidadAlumnos){
+            this.infoAlumnos[i].setPoliza(polizaSeg);
+            return true;
+        }
+        else
+            return false;
+    }
+    
+}
