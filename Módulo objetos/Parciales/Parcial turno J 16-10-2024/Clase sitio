@@ -1,0 +1,23 @@
+package parcialturnoJ16_10_2024;
+
+public abstract class Sitio {
+    private String nombre;
+    private String direccion;
+    private int cantidadUsuariosRegistrados;
+
+    public Sitio(String nombre, String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.cantidadUsuariosRegistrados = 0;
+    }
+
+    public int getCantidadUsuariosRegistrados() {
+        return cantidadUsuariosRegistrados;
+    }
+    
+    public abstract double cotizarSitio();
+    
+    public String toString(){
+        return this.nombre + "; " + this.direccion + "; " + this.getCantidadUsuariosRegistrados() + "; " + cotizarSitio();
+    }
+}
