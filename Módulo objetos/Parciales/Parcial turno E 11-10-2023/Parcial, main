@@ -1,0 +1,40 @@
+package parcialturnoEtema1_11_10_2023;
+
+import PaqueteLectura.GeneradorAleatorio;
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        
+        //un banco tradicional recibe direccion, localidad, nombre, cantidadEmpleados
+        Tradicional tradi = new Tradicional ("47 4 y 5", "La Plata", "Banco Nación", 80);
+        
+        //un banco digital recibe la direccion web, nombre, cantidadEmpleados, N (dimension fisica)
+        Digital digi = new Digital("www.mercadopago.com.ar", "Mercado Pago", 50, 120);
+        
+        //agregamos cuentas bancarias
+        
+        //int cantidadCuentas = GeneradorAleatorio.generarInt(10);
+        for (int i = 0; i < 2/*cantidadCuentas*/; i++){
+            //una cuenta recibe cbu, alias, dniTitular, moneda
+            System.out.println("Ingrese un cbu, un alias, un dni y la moneda para el banco tradicional: ");
+            Cuenta unaCuenta = new Cuenta(Lector.leerInt(), Lector.leerString(), Lector.leerInt(), Lector.leerString());
+            tradi.agregarCuenta(unaCuenta);
+            System.out.println("Ingrese un cbu, un alias, un dni y la moneda para el banco digital: ");
+            Cuenta otraCuenta = new Cuenta(Lector.leerInt(), Lector.leerString(), Lector.leerInt(), Lector.leerString());
+            digi.agregarCuenta(otraCuenta);
+        }
+        
+        System.out.println("Ingrese un cbu y un monto para depositar el dinero: ");
+        int unCbu = Lector.leerInt();
+        double unMonto = Lector.leerDouble();
+        tradi.depositarDinero(unCbu, unMonto);
+        digi.depositarDinero(unCbu, unMonto);
+        
+        System.out.println("Con " + unCbu + " buscamos si cada banco puede recibir tarjeta.");
+        System.out.println("¿Puede recibir tarjeta (digital)? " + digi.puedeRecibirTarjeta(unCbu));
+        System.out.println("¿Puede recibir tarjeta (tradicional)? " + tradi.puedeRecibirTarjeta(unCbu));
+    }
+    
+}
