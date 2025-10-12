@@ -1,0 +1,36 @@
+package parcialturnoEtema1_11_10_2023;
+
+public class Digital extends Banco{
+    private String direccionWeb;
+
+    public Digital(String direccionWeb, String nombre, int cantidadEmpleados, int N) {
+        super(nombre, cantidadEmpleados, N);
+        this.direccionWeb = direccionWeb;
+    }
+    
+    public boolean agregarCuenta(Cuenta unaCuenta){
+        boolean ok = false;
+        if (getCantidadCuentas() < getDimF()){
+            getInfoCuentas()[getCantidadCuentas()] = unaCuenta;
+            incrementoCantidadCuentas();
+            ok = true;
+        }
+        return ok;
+    }
+    
+    public boolean puedeRecibirTarjeta(int unCbu){
+        boolean pude = false;
+        int i = 0;
+        boolean encontre = false;
+        while (i < getCantidadCuentas() && (!encontre)){
+            if ((getInfoCuentas()[i] != null) && (getInfoCuentas()[i].getCbu() == unCbu)){
+                encontre = true;
+                if (getInfoCuentas()[i].getMoneda().equals("Pesos") && getInfoCuentas()[i].getMonto() > 100000)
+                    pude = true;
+            }
+            else
+                i++;
+        }
+        return pude;
+    }
+}
