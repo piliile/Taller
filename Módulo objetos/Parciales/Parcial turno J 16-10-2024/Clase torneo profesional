@@ -1,0 +1,33 @@
+package parcialturnoJ16_10_2024;
+
+public class TorneoProfesional {
+    private String nombreTorneo;
+    private String fecha;
+    private double montoInscripciones;
+    private double montoPremios;
+
+    public TorneoProfesional(String nombreTorneo, String fecha, double montoInscripciones, double montoPremios) {
+        this.nombreTorneo = nombreTorneo;
+        this.fecha = fecha;
+        this.montoInscripciones = montoInscripciones;
+        this.montoPremios = montoPremios;
+    }
+
+    public String getNombreTorneo() {
+        return nombreTorneo;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public double getMontoInscripciones() {
+        return montoInscripciones;
+    }
+
+    public double getMontoPremios() {
+        return montoPremios;
+    }
+    
+    
+}
