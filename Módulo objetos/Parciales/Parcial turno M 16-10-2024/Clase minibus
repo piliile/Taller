@@ -1,4 +1,4 @@
-package parcialViajeEscolar;
+package parcialturnoM16_10_2024;
 public class Minibus {
     private String patente;
     private int capacidad;
@@ -26,8 +26,8 @@ public class Minibus {
     }
     
     public int lugaresLibres(){
-        int aux = 0;
-        return aux = this.capacidad - this.cantidadAlumnos;
+        int auxi = 0;
+        return auxi = this.capacidad - this.cantidadAlumnos;
     }
     
     public boolean asignarPolizaAlAlumno(int dniAlumno, int polizaSeg){
@@ -42,4 +42,29 @@ public class Minibus {
             return false;
     }
     
+    public int getCantAlumnosMismaObra(String unaObra){
+        int auxi = 0 ;
+        for (int i = 0; i < this.cantidadAlumnos; i++){
+           if (this.infoAlumnos[i].getObra().equals(unaObra))
+               auxi++;
+        }
+        return auxi;
+    }
+    
+    public int getTotalAlumnos(){
+        return this.cantidadAlumnos;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+    
+    public String toString(){
+        String auxi = "";
+        for (int i = 0; i < this.cantidadAlumnos; i++){
+            auxi += this.getPatente() + "> - " + "CAPACIDAD: <" + this.getCapacidad() + ">" + "\n" + this.infoAlumnos[i].toString();  
+        }
+        return auxi;
+    }
 }
+
