@@ -1,0 +1,35 @@
+package parcialViajeEscolar;
+public class Viaje {
+    private String nombreColegio;
+    private String fecha;
+    private String destino;
+    private Minibus [] minibuses;
+
+    public Viaje(String nombreColegio, String fecha, String destino, Minibus min1, Minibus min2) {
+        this.nombreColegio = nombreColegio;
+        this.fecha = fecha;
+        this.destino = destino;
+        this.minibuses = new Minibus[2];
+        this.minibuses[0] = min1;
+        this.minibuses[1] = min2;
+    }
+    
+    public String agregarAlumnoYDevolverPatente(Alumno A){
+        String pat = "";
+        if (this.minibuses[0].lugaresLibres() > this.minibuses[1].lugaresLibres()){
+            this.minibuses[0].agregarAlumno(A);
+            pat = this.minibuses[0].getPatente();
+        }
+        else{
+            this.minibuses[1].agregarAlumno(A);
+            pat = this.minibuses[1].getPatente();
+        }
+        return pat;
+    }
+    
+    public void setPoliza(int dniAlum, int polizaSeg){
+        if (!this.minibuses[0].asignarPolizaAlAlumno(dniAlum, polizaSeg))
+            this.minibuses[1].asignarPolizaAlAlumno(dniAlum, polizaSeg);
+    }
+    
+}
