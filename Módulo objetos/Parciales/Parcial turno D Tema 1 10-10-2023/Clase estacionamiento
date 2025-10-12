@@ -1,0 +1,63 @@
+package parcialturnoDtema1_10_10_2023;
+public class Estacionamiento {
+    private String direccion;
+    private double costoPorHora;
+    private Vehiculo [][] lugares;
+    private int cantidadSectores;
+    private int cantidadVehiculos;
+
+    public Estacionamiento(String direccion, double costoPorHora, int S, int V) {
+        this.direccion = direccion;
+        this.costoPorHora = costoPorHora;
+        this.cantidadSectores = S;
+        this.cantidadVehiculos = V;
+        this.lugares = new Vehiculo[S][V];
+        for (int i = 0; i < S; i++)
+            for (int j = 0; j < V; j++)
+                this.lugares[i][j] = null;
+    }
+    
+    public void registrarVehiculo(Vehiculo unVehiculo, int X, int Y){
+        this.lugares[X-1][Y-1] = unVehiculo;
+    }
+            
+    public String liberarAutos(int X, String M){
+        String aux = "";
+        for (int j = 0; j < this.cantidadVehiculos; j++){
+            if ((this.lugares[X-1][j] != null) && (this.lugares[X-1][j].getMarca().equals(M))){
+                aux += this.lugares[X-1][j].toString() + "\n";
+                this.lugares[X-1][j] = null;
+            } 
+        }
+        return aux;
+    }
+    
+    public int sectorQueMasRecaudo(){
+        double maximo = -1; int numeroMaxSector = -1;
+        for (int i = 0; i < this.cantidadSectores; i++){
+            double montoRecaudado = 0;
+            for (int j = 0; j < this.cantidadVehiculos; j++){
+                if (this.lugares[i][j] != null)    
+                    montoRecaudado = this.costoPorHora * this.lugares[i][j].getCantidadHorasEstacionado();
+            }
+            if (maximo < montoRecaudado){
+                maximo = montoRecaudado; 
+                numeroMaxSector = (i+1);
+            }
+        }
+        return numeroMaxSector;
+    }
+    
+    public String toString(){
+        String aux = "Estacionamiento: " + this.direccion + "; " + this.costoPorHora + "\n";
+        for (int i = 0; i < this.cantidadSectores; i++){
+            for (int j = 0; j < this.cantidadVehiculos; j++){
+                if (this.lugares[i][j] != null)   {
+                    aux += "Sector " + (i + 1) + ":" + "\n";
+                    aux += "Lugar: " + (j + 1) + " " + this.lugares[i][j].toString() + "\n";
+                }
+            }
+        }
+        return aux;
+    }   
+}
