@@ -1,0 +1,23 @@
+package parcialturnoJ16_10_2024;
+
+public class Amateur extends Sitio{
+    private int cantidadTorneosJugados;
+    private int cantidadClicks;
+
+    public Amateur(String nombre, String direccion) {
+        super(nombre, direccion);
+        this.cantidadTorneosJugados = 0;
+        this.cantidadClicks = 0;
+    }
+    
+    public double cotizarSitio(){
+        return (this.cantidadClicks * 10) + (getCantidadUsuariosRegistrados() * 50);
+    }
+    
+    public void registrarTorneoAmateur(int cantidadClicks){
+        this.cantidadClicks += cantidadClicks;
+        this.cantidadTorneosJugados++;
+    }
+    
+    
+}
