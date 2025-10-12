@@ -1,0 +1,34 @@
+package parcialturnoJ16_10_2024;
+
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        //String nombre, String direccion, int N)
+        System.out.println("Ingrese el nombre del torneo profesional, la direccion y la cantidad maxima de torneos: ");
+        Profesional torneoProfesional = new Profesional(Lector.leerString(), Lector.leerString(), Lector.leerInt());
+        
+        //tring nombre, String direccion)
+        System.out.println("Ingrese el nombre del torneo amateur y la direccion: ");
+        Amateur torneoAmateur = new Amateur(Lector.leerString(), Lector.leerString());
+        
+        System.out.println("Ingrese el nombre del torneo profesional, la fecha, el monto de inscripciones y el monto de premios");
+        //String nombreTorneo, String fecha, double montoInscripciones, double montoPremios
+        TorneoProfesional unTorneo = new TorneoProfesional(Lector.leerString(), Lector.leerString(), Lector.leerDouble(), Lector.leerDouble());
+        
+        System.out.println("¿Se pudo registrar el torneo?");
+        torneoProfesional.registrarTorneoProfesional(unTorneo);
+        
+        System.out.println("Cotizacion del torneo profesional: "+torneoProfesional.cotizarSitio());
+        
+        torneoAmateur.registrarTorneoAmateur(500);
+        System.out.println("Cotizacion del torneo amateur: "+torneoAmateur.cotizarSitio());
+        
+        
+        
+        System.out.println("Representacion torneo profesional: " + torneoProfesional.toString());
+        System.out.println("Representacion torneo amateur: "+torneoAmateur.toString());
+    }
+    
+}
