@@ -1,4 +1,4 @@
-package parcialViajeEscolar;
+package parcialturnoM16_10_2024;
 public class Alumno {
     private int dni;
     private String nombre;
@@ -32,5 +32,17 @@ public class Alumno {
         this.poliza = poliza;
     }
     
+    public String getSoloSiTiene(){
+        String auxiliar = "";
+        if (!this.getObra().equals(""))
+            auxiliar = this.getObra();
+        return auxiliar;
+    }
     
+    public String toString(){
+        String auxiliar = "";
+        auxiliar += "<" + this.getDni() + "> - <" + this.getNombre() + "> - <" + this.getPoliza() + ">" + " - <" + 
+                this.getSoloSiTiene() + ">" + "\n";
+        return auxiliar;
+    }
 }
