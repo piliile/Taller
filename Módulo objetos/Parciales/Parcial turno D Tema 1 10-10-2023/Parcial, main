@@ -1,0 +1,35 @@
+package parcialturnoDtema1_10_10_2023;
+
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        System.out.println("Ingrese las dimensiones del SECTOR y de los VEHICULOS, y la "
+                + "direccion del estacionamiento, el costo por hora y  ");
+        int dimensionSectores = Lector.leerInt();
+        int dimensionVehiculos = Lector.leerInt();
+        Estacionamiento esta = new Estacionamiento(Lector.leerString(), Lector.leerDouble(), dimensionSectores, dimensionVehiculos);
+        
+        System.out.println("Ingrese la cantidad de vehículos que quiere registrar: ");
+        int cantidadVehiculosARegistrar = Lector.leerInt();
+        for (int i = 0; i < cantidadVehiculosARegistrar; i++){
+            System.out.println("Ingrese una patente, la cantidad de horas estacionado, una marca y un modelo: ");
+            Vehiculo vehi = new Vehiculo(Lector.leerString(), Lector.leerInt(), Lector.leerString(), Lector.leerString());
+            
+            System.out.println("Ingrese DONDE quiere dejar su vehículo (tenga en cuenta las dimensiones),"
+                    + "SECTORES: " + dimensionSectores + ". VEHICULOS: " + dimensionVehiculos + ".");
+            int X = Lector.leerInt(); int Y = Lector.leerInt();
+            esta.registrarVehiculo(vehi, X, Y);
+        }
+        System.out.println("Ingrese el sector y la marca de vehículos que quiere liberar: ");
+        esta.liberarAutos(Lector.leerInt(), Lector.leerString());
+        
+        System.out.println("El numero de sector que más dinero recaudo con los vehículos es: " + esta.sectorQueMasRecaudo());
+        
+        System.out.println("La representacion del estacionamiento es la siguiente: ");
+        System.out.println(esta.toString());
+                
+    }
+    
+}
