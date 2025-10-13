@@ -1,0 +1,16 @@
+package parcialturnoFtema1_10_10_2023;
+
+public class Director extends Persona {
+    private double montoViaticos;
+
+    public Director(double montoViaticos, String nombrePersona, int dni, int añoIngreso, double sueldoBasico) {
+        super(nombrePersona, dni, añoIngreso, sueldoBasico);
+        this.montoViaticos = montoViaticos;
+    }
+    
+    public double retornarSueldoACobrar(){
+        double aux = super.retornarSueldoACobrar();
+        return aux += this.montoViaticos;
+    }
+    
+}
