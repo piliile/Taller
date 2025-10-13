@@ -1,0 +1,63 @@
+package parciales.parcialturnoBtema1_17_10_2022;
+public class Torneo {
+    private String nombreTorneo;
+    private Goleador [][] tablaGoleadores;
+    private int [] tablaCantidadGoleadores;
+    private int cantidadFechas; // seria la dimension logica de las fechas... (como maximo N fechas).
+    private int dimFGoleadores;
+    private int dimFFechas; 
+    
+    public Torneo(String nombreTorneo, int N, int M) {
+        this.nombreTorneo = nombreTorneo;
+        this.cantidadFechas = 0;
+        this.dimFGoleadores = M;
+        this.dimFFechas = N;
+        this.tablaGoleadores = new Goleador[this.dimFFechas][this.dimFGoleadores];
+        inicializarMatriz();
+        this.tablaCantidadGoleadores = new int [this.dimFFechas];
+        inicializarVector();
+        
+    }
+    
+    public void inicializarMatriz(){
+        for (int i = 0; i < this.dimFFechas; i++){
+            for (int j = 0; j < this.dimFGoleadores; j++){
+                this.tablaGoleadores[i][j] = null;
+            }
+        }
+    }
+    
+    public void inicializarVector(){
+        for (int z = 0; z < this.dimFFechas; z++){
+            this.tablaCantidadGoleadores[z] = 0;
+        } 
+    }
+    
+    public void agregarGoleador(int X, Goleador unGoleador){
+        int indiceGoleador = this.tablaCantidadGoleadores[X-1];        
+        this.tablaGoleadores[X-1][indiceGoleador] = unGoleador;
+        this.tablaCantidadGoleadores[X-1]++;
+    }
+    
+    public Goleador goleadorMenosGoles(int X){
+        Goleador goleadorMinimo = null;
+        int cantidadGoleadores = this.tablaCantidadGoleadores[X-1];
+        int minimo = 200;
+        for (int i = 0; i < cantidadGoleadores; i++){
+            if (minimo > this.tablaGoleadores[X-1][i].getCantidadGoles()){
+                minimo = this.tablaGoleadores[X-1][i].getCantidadGoles();
+                goleadorMinimo = this.tablaGoleadores[X-1][i];
+            }
+        }
+        return goleadorMinimo;
+    }
+    
+    public int retornoCantidadJugadoresRegistrados(){
+        int total = 0; int i = 0; 
+        while (i < this.dimFFechas) { // no iria hasta la dimLogic?
+            total += this.tablaCantidadGoleadores[i];
+            i++;
+        }
+        return total;
+    }
+}
