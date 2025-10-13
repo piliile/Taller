@@ -1,0 +1,32 @@
+package parcialturnoFtema1_10_10_2023;
+
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        System.out.println("Ingrese el monto de viáticos, el nombre, el dni, el año de ingreso y el sueldo básico:");
+        Director unDirector = new Director(Lector.leerDouble(), Lector.leerString(), Lector.leerInt(), 
+                Lector.leerInt(), Lector.leerDouble());
+        
+        System.out.println("Ingrese la cantidad de sucursales, el nombre de la empresa y la direccion: ");
+        int cantidadSucursales = Lector.leerInt();
+        Empresa emp = new Empresa(Lector.leerString(), Lector.leerString(), unDirector, cantidadSucursales);
+        
+        System.out.println("Ingrese una cantidad de encargados (RECORDA: hay un máximo de " + cantidadSucursales
+                + " sucursales) " + " para asignarlos: ");
+        int cantidadEncargados = Lector.leerInt();
+        for (int i = 0; i < cantidadEncargados; i++){    
+            System.out.println("Ingrese la cantidad de empleados, el nombre, el dni, el año de ingreso y el sueldo básico: ");
+            Encargado unEncargado = new Encargado (Lector.leerInt(), Lector.leerString(), Lector.leerInt(), 
+                Lector.leerInt(), Lector.leerDouble());
+        
+            System.out.println("Ingrese una sucursal X: ");
+            emp.asignarEncargado(Lector.leerInt(), unEncargado);
+        }
+        
+        System.out.println("La representación de la empresa es la siguiente: ");
+        System.out.println(emp.toString());
+    }
+    
+}
