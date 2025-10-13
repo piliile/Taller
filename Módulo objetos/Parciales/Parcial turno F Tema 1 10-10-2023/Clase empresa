@@ -1,0 +1,45 @@
+package parcialturnoFtema1_10_10_2023;
+
+public class Empresa {
+    private String nombre;
+    private String direccion;
+    private Director directorEjecutivo;
+    private Encargado [] sucursales;
+    private int dimF;
+    
+    public Empresa(String nombre, String direccion, Director directorEjecutivo, int N) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.directorEjecutivo = directorEjecutivo;
+        this.dimF = N;
+        this.sucursales = new Encargado[N];
+        for (int i = 0; i < N; i++)
+            this.sucursales[i] = null;
+    }
+    
+    public void asignarEncargado(int X, Encargado unEncargado){   
+        this.sucursales[X-1] = unEncargado;
+    }
+    
+    public double retornarSueldoACobrar(){
+        double montoDirector = this.directorEjecutivo.retornarSueldoACobrar();
+        double montoEncargados = 0;
+        for (int i = 0; i < this.dimF; i++){
+            if (this.sucursales[i] != null)
+                montoEncargados += this.sucursales[i].retornarSueldoACobrar();
+        }
+        return montoDirector + montoEncargados;
+    }
+        
+    public String toString(){
+        String aux = "EMPRESA: " + this.nombre + ", DIRECCIÓN: " + this.direccion + "." + "\n" + 
+                "Representación director ejecutivo: " + "\n" + this.directorEjecutivo.toString() + "\n";
+        for (int i = 0; i < this.dimF; i ++){
+            if (this.sucursales[i] != null)    
+                aux += "Encargado: " + this.sucursales[i].toString() + ". Número de sucursal: " + (i + 1) + "\n";
+            else
+                aux += "El número de sucursal " + (i + 1) + " no tiene encargado.";
+        }
+        return aux;
+    }
+}
