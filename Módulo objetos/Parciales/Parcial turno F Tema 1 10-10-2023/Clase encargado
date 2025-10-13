@@ -1,0 +1,15 @@
+package parcialturnoFtema1_10_10_2023;
+
+public class Encargado extends Persona {
+    private int cantidadEmpleados;
+
+    public Encargado(int cantidadEmpleados, String nombrePersona, int dni, int añoIngreso, double sueldoBasico) {
+        super(nombrePersona, dni, añoIngreso, sueldoBasico);
+        this.cantidadEmpleados = cantidadEmpleados;
+    }
+    
+    public double retornarSueldoACobrar(){
+        double aux = super.retornarSueldoACobrar();
+        return aux += (1000*this.cantidadEmpleados);
+    }
+}
