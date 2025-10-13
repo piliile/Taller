@@ -1,0 +1,19 @@
+package parciales.parcialturnoBtema1_17_10_2022;
+
+public class Goleador {
+    private String nombreGoleador;
+    private String equipo;
+    private int cantidadGoles;
+
+    public Goleador(String nombreGoleador, String equipo, int cantidadGoles) {
+        this.nombreGoleador = nombreGoleador;
+        this.equipo = equipo;
+        this.cantidadGoles = cantidadGoles;
+    }
+
+    public int getCantidadGoles() {
+        return cantidadGoles;
+    }
+    
+    
+}
