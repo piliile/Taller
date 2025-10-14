@@ -1,0 +1,15 @@
+package parciales.parcialturnoDtema1_14_10_2022;
+
+public class ADistancia extends Curso{
+    private String link;
+
+    public ADistancia(String link, int añoCursada, int N) {
+        super(añoCursada, N);
+        this.link = link;
+    }
+  
+    public boolean puedeRendir(Alumno unAlumno){
+        return ((unAlumno.getAsistencias() >= 1) && (unAlumno.getCantidadAutoevAprobadas() >= 3)); 
+    }
+
+}
