@@ -1,0 +1,25 @@
+package parcialturnoCtema2_14_10_2022;
+public class Butaca {
+    private String descriptor;
+    private double precio;
+    private boolean ocupada;
+
+    public Butaca(int N, int M) {
+        this.descriptor = "Butaca: ";
+        this.precio = 800;
+        this.ocupada = false;
+    }
+    
+    public double ocupoButaca(int F){
+        this.ocupada = true;
+        return this.precio + 100 * F;
+    }
+    
+    public void desocupoButaca(){
+        this.ocupada = false;
+    }
+    
+    public String toString(int i, int j){
+        return this.descriptor + i + ", " + j + ", " + this.precio + ", " + this.ocupada;
+    }
+}
