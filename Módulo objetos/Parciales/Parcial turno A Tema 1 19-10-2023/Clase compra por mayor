@@ -1,0 +1,21 @@
+package parcialturnoAtema1_19_10_2023;
+
+public class CompraPorMayor extends Compra{
+    private ConsumidorFinal datosConsumidor;
+
+    public CompraPorMayor(ConsumidorFinal datosConsumidor, int numero, Fecha date, int N) {
+        super(numero, date, N);
+        this.datosConsumidor = datosConsumidor;
+    }
+    
+    public void agregarProductoCompraPorMayor(Producto unProducto){
+        if ((unProducto.getCantidadUnidades()) > 6){
+            super.agregarProducto(unProducto);
+        }
+    }
+    
+    public double precioFinalCompraPorMayor(){
+        double precioFinalCompra = super.precioFinalDeLaCompra();
+        return precioFinalCompra * 2.1; 
+    }
+}
