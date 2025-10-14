@@ -1,0 +1,53 @@
+package parcialturnoCtema2_14_10_2022;
+
+public class Funcion {
+    private String titulo;
+    private String fecha;
+    private int hora;
+    private Butaca [][] sala;
+    private int cantidadFilas;
+    private int cantidadButacas;
+
+    public Funcion(String titulo, String fecha, int hora, int N, int M) {
+        this.titulo = titulo;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.cantidadFilas = N;
+        this.cantidadButacas = M;
+        inicializarSala(N, M);
+    }
+    
+    private void inicializarSala(int N, int M){
+        for (int i = 0; i < N; i ++){
+            for (int j = 0; j < M; j ++) {
+                this.sala[i][j] = null;
+            }
+        }
+    }
+    
+    public double ocuparButaca(int B, int F){
+        double precioDeLaButaca = 0;
+        if (this.sala[B-1][F-1] == null){
+            precioDeLaButaca = this.sala[B-1][F-1].ocupoButaca(F-1);
+        }
+        return precioDeLaButaca;
+    }
+    
+    public void desocupoButacasDeLaFila(int F){
+        for (int j = 0; j < this.cantidadButacas; j ++){
+            if (this.sala[F-1][j] != null){
+                this.sala[F-1][j].desocupoButaca();
+            }
+        }
+    }
+    
+    public String toString(int B){
+        String aux = "";
+        for (int i = 0; i < this.cantidadFilas; i ++){
+            if (this.sala[i][B-1] != null){
+                aux += this.sala[i][B-1].toString(i, B-1);
+            }
+        }
+        return aux;
+    }
+}
