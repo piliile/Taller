@@ -1,0 +1,63 @@
+package parcialturnoAtema1_19_10_2023;
+
+public class Compra {
+    private int numero;
+    private Fecha date;
+    private Producto [] productos;
+    private int cantidadProductos; // seria como la dimension logica del vector de objeto producto.
+    private int totalProductos;
+    
+    public Compra(int numero, Fecha date, int N) {
+        this.numero = numero;
+        this.date = date;
+        this.cantidadProductos = 0;
+        this.totalProductos = N;
+        this.productos = new Producto [N];
+        for (int i = 0; i < N; i++){
+            this.productos[i] = null;
+        }
+    }
+
+    public int getCantidadProductos() {
+        return cantidadProductos;
+    }
+
+    public int getTotalProductos() {
+        return totalProductos;
+    }
+    
+    public void agregarProducto(Producto unProducto){
+        if (this.cantidadProductos < this.totalProductos){
+            this.productos[this.cantidadProductos] = unProducto;
+            this.cantidadProductos++;
+        }
+    }
+    
+    public double precioFinalDeLaCompra(){
+        int i = 0; double precioFinal = 0;
+        while (i < this.cantidadProductos){
+            precioFinal += this.productos[i].getPrecioFinal();
+            i++;
+        }
+        return precioFinal;
+    }
+    
+    public String toString(){
+        String aux = "Número: " + this.numero + ", Fecha: " + this.date.toString() + "\n" + 
+                "Información de productos: " + "\n";
+        for (int i = 0; i < this.cantidadProductos; i++){
+            aux += "Código: " + this.productos[i].getCodigo() + ", Descripción: " + this.productos[i].getDescripcion() +
+                    ", Precio final de la compra: " + this.productos[i].getPrecioFinal() + " pesos." + "\n";
+        }
+        aux += "Precio final de la compra: " + precioFinalDeLaCompra();
+        return aux;
+    }
+    
+    public boolean abonableEnCuotas(){
+        boolean aux = false;
+        if (precioFinalDeLaCompra() > 100000)
+            aux = true;
+        return aux;
+    }
+    
+}
