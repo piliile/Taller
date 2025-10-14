@@ -1,0 +1,13 @@
+package parcialturnoAtema1_19_10_2023;
+
+public class ConsumidorFinal {
+    private int cuil;
+    private String nombre;
+
+    public ConsumidorFinal(int cuil, String nombre) {
+        this.cuil = cuil;
+        this.nombre = nombre;
+    }
+    
+    
+}
