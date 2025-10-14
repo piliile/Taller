@@ -1,0 +1,26 @@
+package parciales.parcialturnoHtema1_17_10_2023;
+
+import PaqueteLectura.GeneradorAleatorio;
+import PaqueteLectura.Lector;
+
+public class Parcial {
+    public static void main(String[] args) {
+        Estadio unEstadio = new Estadio("Jorge Luis Hirschi", "1 y 55", 70000);
+        int unaCantidadDeRegistros = 3;
+        for (int i = 0; i < unaCantidadDeRegistros; i++){
+            Concierto C = new Concierto(GeneradorAleatorio.generarString(20), GeneradorAleatorio.generarDouble(500), GeneradorAleatorio.generarInt(70000));
+            int mes = GeneradorAleatorio.generarInt(12)+1; System.out.println("El mes generado es: " + mes);
+            unEstadio.registrarConcierto(C, mes);
+        }
+        System.out.println("Ingrese un mes para listar los conciertos: ");
+        System.out.println(unEstadio.listarElementosMesM(Lector.leerInt()));
+        
+        System.out.println("Ingrese un mes para listar la ganancia del estadio en dicho mes: ");
+        int unMes = Lector.leerInt();
+        System.out.println("La ganancia del estadio en el mes: " + unMes + " es: " + unEstadio.calcularGananciaEstadioEnMesM(unMes));
+        
+        System.out.println("La representación del estadio es la siguiente: ");
+        System.out.println(unEstadio.toString());
+    }
+    
+}
