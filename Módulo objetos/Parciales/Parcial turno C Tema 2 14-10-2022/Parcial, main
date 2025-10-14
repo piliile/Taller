@@ -1,0 +1,35 @@
+package parciales.parcialturnoCtema2_14_10_2022;
+
+import PaqueteLectura.GeneradorAleatorio;
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        Funcion funcionTeatro = new Funcion("Shakespeare", "20/11/2025", 20, 5, 5);
+        
+        int cantidadFilasAOcupar = 3;
+        int cantidadButacasAOcupar = 3;
+        for (int i = 0; i < cantidadFilasAOcupar ; i ++){
+            for (int j = 0; j < cantidadButacasAOcupar; j ++ ){
+                System.out.println("Ingrese la fila donde quiere sentarse: ");
+                int fila = Lector.leerInt();
+                System.out.println("Ahora ingrese la butaca donde quiere sentarse: ");
+                int butaca = Lector.leerInt();
+                System.out.println("El precio de la fila " + (fila + 1) + ", butaca: " + (butaca +1) + " es: " + 
+                        funcionTeatro.ocuparButaca(fila, butaca));
+            }
+        }
+    
+        System.out.println("Desocupar las butacas de la fila 1.");
+        funcionTeatro.desocupoButacasDeLaFila(1);
+        
+        System.out.println("Representación de las butacas número 3: ");
+        funcionTeatro.representacionButaca(3);
+        
+        System.out.println("Representación de la función de teatro: ");
+        System.out.println(funcionTeatro.toString());
+        
+    }
+    
+}
