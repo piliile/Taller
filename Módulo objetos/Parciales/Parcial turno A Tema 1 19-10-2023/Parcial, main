@@ -1,0 +1,44 @@
+package parcialturnoAtema1_19_10_2023;
+
+import PaqueteLectura.Lector;
+
+public class Parcial {
+
+    public static void main(String[] args) {
+        //public Compra(int numero, Fecha date, int N)
+        Fecha diamesaño1 = new Fecha(13, 10, 2025);
+        Compra compra = new Compra (321, diamesaño1, 10);
+        
+        ConsumidorFinal consumidor = new ConsumidorFinal (123456, "Enrique");
+        Fecha diamesaño2 = new Fecha(8, 3, 2006);
+        //(ConsumidorFinal datosConsumidor, int numero, Fecha date, int N) {
+        CompraPorMayor compraMayor = new CompraPorMayor(consumidor, 123, diamesaño2, 10);
+        
+        System.out.println("Elija la cantidad de productos a cargar en las compras (Sería esa cantidad para cada compra): ");
+        int productosACargar = Lector.leerInt();
+        
+        for (int i = 0; i < productosACargar; i++){
+            //int codigo, String descripcion, double precioUnitario, int cantidadUnidades
+            System.out.println("Ingrese (PARA EL PRODUCTO DE LA COMPRA) el codigo, la descripción, el $ unitario y "
+                    + "la cantidad de unidades: ");
+            Producto productoCompra = new Producto(Lector.leerInt(), Lector.leerString(), Lector.leerDouble(), Lector.leerInt());
+            compra.agregarProducto(productoCompra);
+            
+            System.out.println("Ingrese (PARA EL PRODUCTO DE LA COMPRA POR MAYOR) el codigo, la descripción, "
+                    + "el $ unitario y la cantidad de unidades: ");            
+            Producto productoCompraMayor = new Producto(Lector.leerInt(), Lector.leerString(), Lector.leerDouble(), Lector.leerInt());
+            compraMayor.agregarProductoCompraPorMayor(productoCompraMayor);
+        }
+        
+        System.out.println("El resumen de la compra es: ");
+        System.out.println(compra.toString() + "\n" + "\n");
+       
+        System.out.println("El resumen de la compra al mayor es: ");
+        System.out.println(compraMayor.toString() + "\n" + "\n");
+        
+        System.out.println("¿La compra es abonable en cuotas? Respuesta: " + compra.abonableEnCuotas());
+        System.out.println("¿La compra al mayor es abonable en cuotas? Respuesta: " + compraMayor.abonableEnCuotas());
+
+    }
+    
+}
