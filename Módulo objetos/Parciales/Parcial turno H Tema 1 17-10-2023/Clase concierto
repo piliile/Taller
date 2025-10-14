@@ -1,0 +1,21 @@
+package parciales.parcialturnoHtema1_17_10_2023;
+public class Concierto {
+    private String artista;
+    private double precioEntrada;
+    private int cantidadEntradasVendidas;
+
+    public Concierto(String artista, double precioEntrada, int cantidadEntradasVendidas) {
+        this.artista = artista;
+        this.precioEntrada = precioEntrada;
+        this.cantidadEntradasVendidas = cantidadEntradasVendidas;
+    }
+    
+    public String toString(){
+        return "Nombre artista: " + this.artista + ", precio de la entrada: " + this.precioEntrada + ", cantidad entradas vendidas: "
+                + this.cantidadEntradasVendidas + "\n";
+    }
+    
+    public double getGanancia(){
+        return (this.precioEntrada * this.cantidadEntradasVendidas);
+    }
+}
