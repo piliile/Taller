@@ -1,0 +1,65 @@
+package parciales.parcialturnoHtema1_17_10_2023;
+
+public class Estadio {
+    private String nombre;
+    private String dirección;
+    private int capacidad;
+    private Concierto [][] agenda;
+
+    public Estadio(String nombre, String dirección, int capacidad) {
+        this.nombre = nombre;
+        this.dirección = dirección;
+        this.capacidad = capacidad;
+        this.agenda = new Concierto[12][31]; // 0-11  y 0-30
+        inicializarAgenda();
+    }
+    
+    private void inicializarAgenda(){
+        for (int i = 0; i < 12; i ++){
+            for (int j = 0; j < 31; j ++){
+                this.agenda[i][j] = null; // inicialmente el estadio no tiene conciertos agregados.
+            }
+        }
+    }
+    
+    public void registrarConcierto(Concierto C, int M){
+        int i = 0;
+        while ((i < 31) && ((this.agenda[M-1][i]) != null)) // lo recorremos con while ya que es hasta encontrar el PRIMER lugar vacio
+            i++;
+        if (i < 31){
+            this.agenda[M-1][i] = C;
+        }
+    }
+    
+    public String listarElementosMesM(int M){
+        String aux = "";
+        for (int i = 0; i < 31; i++){
+           if (this.agenda[M-1][i] != null){
+                aux += this.agenda[M-1][i].toString(); 
+           }
+        }
+        return aux;
+    }
+    
+    public double calcularGananciaEstadioEnMesM(int M){
+        double total = 0;
+        for (int i = 0; i< 31; i++){
+            if (this.agenda[M-1][i] != null){
+                total += this.agenda[M-1][i].getGanancia();
+            }
+        }
+        return total/2;
+    }
+    
+    public String toString(){
+        String aux = "Estadio: " + this.nombre + ", " + this.dirección + ", " + this.capacidad + "." + "\n";
+        for (int j = 0; j < 12; j++){
+            for (int i = 0; i < 31; i++){
+                if (this.agenda[j][i] != null)
+                    aux += "Mes " + (j+1) + ":" + "\n" + "Día " + (i+1) + ":" + "\n" + this.agenda[j][i].toString();
+            }
+        }
+        return aux;
+    }
+    
+}
