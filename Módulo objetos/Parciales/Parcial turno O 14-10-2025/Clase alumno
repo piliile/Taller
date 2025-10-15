@@ -1,0 +1,41 @@
+package parcialturnoO_14_10_2025;
+
+public class Alumno {
+    private String nombre;
+    private int cantidadTareasCompletadas;
+    private double sumaNotasDeTareasCompletadas;
+
+    public Alumno(String nombre) {
+        this.nombre = nombre;
+        this.cantidadTareasCompletadas = 0;
+        this.sumaNotasDeTareasCompletadas = 0;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public void actualizarRendimientoAlumno(double nota){
+        this.cantidadTareasCompletadas++;
+        this.sumaNotasDeTareasCompletadas += nota;
+    }
+
+    public int getCantidadTareasCompletadas() {
+        return cantidadTareasCompletadas;
+    }
+
+    public double getSumaNotasDeTareasCompletadas() {
+        return sumaNotasDeTareasCompletadas;
+    }
+    
+    public double retornoPromedio(){
+        return this.sumaNotasDeTareasCompletadas/this.cantidadTareasCompletadas;
+    }
+    
+    @Override
+    public String toString(){
+        return "Nombre: " + this.getNombre() + ", tareas completadas: " +  this.getCantidadTareasCompletadas() 
+                + ", suma total de notas de tareas completadas: " + this.getSumaNotasDeTareasCompletadas() + ".";
+    }
+    
+}
