@@ -1,0 +1,51 @@
+package parciales.parcialturnoMAÑANAtema2_12_5_2025;
+
+public abstract class Grupo {
+    private String nombre;
+    private double sueldoInstructor;
+    private double costoInscripcion;
+    private Chico [] inscriptos;
+    private int cantidadInscriptos;
+    private int dimF;
+
+    public Grupo(String nombre, double sueldoInstructor, double costoInscripcion, int N) {
+        this.nombre = nombre;
+        this.sueldoInstructor = sueldoInstructor;
+        this.costoInscripcion = costoInscripcion;
+        this.cantidadInscriptos = 0;
+        this.dimF = N;
+        this.inscriptos = new Chico [N];
+        inicializarInscriptos();
+    }
+    
+    private void inicializarInscriptos(){
+        for (int i = 0; i < this.dimF; i++){
+            this.inscriptos[i] = null;
+        }
+    }
+    
+    public boolean agregoChico(Chico C){
+        this.inscriptos[this.cantidadInscriptos] = C;
+        this.cantidadInscriptos++;
+        return true;
+    }
+    
+    public abstract double descuentoGrupo();
+    
+    public double gananciaNeta(){
+        double monto = (this.cantidadInscriptos * this.costoInscripcion) - this.sueldoInstructor;
+        return monto - descuentoGrupo();
+    }
+    
+    public String toString(){
+       String aux = "Nombre instructor: " + this.nombre + ", cantidad de chicos inscriptos: " + this.cantidadInscriptos + "." + "\n";
+       for (int i = 0; i < this.cantidadInscriptos; i++){
+           aux += "Datos chico "+  (i+1) + this.inscriptos[i].toString() + ";   ";
+       }
+       return aux + "\n" + "Ganancia neta del grupo: " + this.gananciaNeta();
+    }
+    
+    public boolean determinoSiEsRentable(){
+        return (this.gananciaNeta() > 5000000);
+    }
+}
