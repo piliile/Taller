@@ -1,0 +1,24 @@
+package parcialturnoO_14_10_2025;
+public class Basico extends Curso{
+
+    public Basico(String nombre, double costoInscripcion, String fechaComienzo, int M) {
+        super(nombre, costoInscripcion, fechaComienzo, M);
+    }
+    
+    @Override
+    public String alumnoMejorDesempeño(){
+        int maximo = -1; Alumno 
+        auxAlumnoMejor = null;
+        int cantAlumnos = super.getCantidadAlumnos();
+        for (int i = 0; i < cantAlumnos; i++){
+            Alumno alumno2 = super.obtenerAlumnoA(i);
+            int cantTareas = alumno2.getCantidadTareasCompletadas();
+            if (maximo < cantTareas){
+                maximo = alumno2.getCantidadTareasCompletadas();
+                auxAlumnoMejor = alumno2;
+            }
+        }
+        return auxAlumnoMejor.toString();
+    }
+    
+}
