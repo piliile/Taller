@@ -1,0 +1,65 @@
+package parcialturnoO_14_10_2025;
+
+public abstract class Curso {
+    private String nombre;
+    private double costoInscripcion;
+    private String fechaComienzo;
+    private Alumno [] infoAlumnos;
+    private int cantidadAlumnos;
+    private int dimF;
+
+    public Curso(String nombre, double costoInscripcion, String fechaComienzo, int M) {
+        this.nombre = nombre;
+        this.costoInscripcion = costoInscripcion;
+        this.fechaComienzo = fechaComienzo;
+        this.cantidadAlumnos = 0;
+        this.dimF = M;
+        this.infoAlumnos = new Alumno [M];
+        inicializarInfoAlumnos();
+    }
+    
+    private void inicializarInfoAlumnos(){
+        for (int i = 0; i < this.dimF; i++){
+            this.infoAlumnos[i] = null;
+        }
+    }
+    
+    public int inscribirAlumno(Alumno unAlumno){
+        this.infoAlumnos[this.cantidadAlumnos] = unAlumno; // asumimos que hay lugar.
+        this.cantidadAlumnos++;
+        return this.cantidadAlumnos;
+    }
+    
+    public Alumno obtenerAlumnoA(int A){ // asumimos que A esta en un rango valido de posiciones (no restamos ni modificamos nada)
+        int i = 0; boolean encontre = false; Alumno auxAlumno = null;
+        while ((i < this.cantidadAlumnos) && (!encontre)){
+            if (i == A){
+                auxAlumno = this.infoAlumnos[i];
+                encontre = true;
+            }
+            i++;
+        }
+        return auxAlumno;
+    }
+    
+    public void actualizarRendimiento(String nombreAlumno, double X){ // X = NOTA DEL ALUMNO CON DICHO NOMBRE
+        int i = 0;
+        while((i < this.cantidadAlumnos) && (!this.infoAlumnos[i].getNombre().equals(nombreAlumno))){
+            i++;
+        }
+        if (i < this.cantidadAlumnos){
+            this.infoAlumnos[i].actualizarRendimientoAlumno(X);
+        }
+    }
+
+    public int getCantidadAlumnos() {
+        return cantidadAlumnos;
+    }
+     
+    public abstract String alumnoMejorDesempeño();
+    
+    public String representacionCurso(){
+        return "Nombre curso: " + this.nombre + ", costo de inscripción: " + this.costoInscripcion + 
+                ", fecha de comienzo: " + this.fechaComienzo + "representación alumno mejor desempeño: " + this.alumnoMejorDesempeño();
+    }
+}
