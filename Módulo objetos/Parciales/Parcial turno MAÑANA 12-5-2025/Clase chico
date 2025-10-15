@@ -1,0 +1,23 @@
+package parciales.parcialturnoMAÑANAtema2_12_5_2025;
+
+public class Chico {
+    private String nombre;
+    private int telefonoResponsable;
+    private boolean sabeNadar;
+
+    public Chico(String nombre, int telefonoResponsable, boolean sabeNadar) {
+        this.nombre = nombre;
+        this.telefonoResponsable = telefonoResponsable;
+        this.sabeNadar = sabeNadar;
+    }
+
+    public boolean isSabeNadar() {
+        return sabeNadar;
+    }
+    
+    public String toString(){
+        return "Nombre chico: " + this.nombre + ", telefono responable: " + this.telefonoResponsable + ", ¿sabe nadar? " + this.sabeNadar;
+    }
+    
+  
+}
