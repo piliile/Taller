@@ -1,0 +1,21 @@
+package parciales.parcialturnoMAÑANAtema2_12_5_2025;
+
+public class Explorador extends Grupo {
+    private double costoAlquilerCarpas;
+
+    public Explorador(double costoAlquilerCarpas, String nombre, double sueldoInstructor, double costoInscripcion, int N) {
+        super(nombre, sueldoInstructor, costoInscripcion, N);
+        this.costoAlquilerCarpas = costoAlquilerCarpas;
+    }
+    
+    
+    public boolean agregarChico(Chico C){
+        return super.agregoChico(C);
+    } 
+    
+    public double descuentoGrupo(){
+        return this.costoAlquilerCarpas;
+    }
+    
+    
+}
