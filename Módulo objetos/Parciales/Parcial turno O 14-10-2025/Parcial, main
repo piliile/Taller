@@ -1,0 +1,37 @@
+package parcialturnoO_14_10_2025;
+
+import PaqueteLectura.Lector;
+
+public class Parcial {
+    public static void main(String[] args) {
+        //    public Basico(String nombre, double costoInscripcion, String fechaComienzo, int M) 
+        Basico cursoBasico = new Basico("Cursito basiquito", 100.50, "Martes 9 de octubre", 5);
+        //  public Avanzado(String descripcion, String nombre, double costoInscripcion, String fechaComienzo, int M) {
+        Avanzado cursoAvanzado = new Avanzado("apto para personas con iq>100", "Cursote avanzadote", 5000.5, "Miercoles 10 de octubre", 5);
+        
+        int cantidadACargar = 2;
+        for (int i = 0; i < cantidadACargar; i++){
+            System.out.println("Ingrese el nombre del alumno del curso básico: ");
+            Alumno unAlumnoCB = new Alumno (Lector.leerString());
+            cursoBasico.inscribirAlumno(unAlumnoCB);
+            System.out.println("Ingrese el nombre del alumno del curso avanzado: ");
+            Alumno unAlumnoCA = new Alumno (Lector.leerString());
+            cursoAvanzado.inscribirAlumno(unAlumnoCA);
+        }
+        
+        System.out.println("Actualicemos el rendimiento (curso basico) de algún alumno, elija cúal, es decir, ingrese el nombre "
+                + "y la cantidad (nota) a incrementar: ");
+        cursoBasico.actualizarRendimiento(Lector.leerString(), Lector.leerDouble());
+        
+        System.out.println("Realice lo mismo con otro alumno del curso avanzado: ");
+        System.out.println("Ingrese el nombre y la cantidad a incrementar: ");
+        cursoAvanzado.actualizarRendimiento(Lector.leerString(), Lector.leerDouble());
+        
+        System.out.println("La representación del curso avanzado es la siguiente: ");
+        System.out.println(cursoBasico.representacionCurso());
+        
+        System.out.println("La representación del curso básico es la siguiente: ");
+        System.out.println(cursoAvanzado.representacionCurso());
+    }
+    
+}
