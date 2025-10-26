@@ -1,15 +1,16 @@
 {Realice un programa para que un robot junte todas las flores de la avenida 1 y las deposite al final
 de dicha avenida. Al finalizar, debe informar la cantidad de flores depositadas y la cantidad de
 esquinas sin flores que encontró durante el recorrido.
-a) Modifique el programa anterior para que el mismo robot realice lo mismo en las avenidas 1, 3
-y 5.}
+a) Modifique el programa anterior para que el mismo robot realice lo mismo en las avenidas 1, 3 y 5.}
 programa ejemplo
 procesos
-  proceso juntar(ES cantFlores: numero)
+  proceso contador(ES cantFlores: numero; ES cantVacias: numero)
   comenzar
     si HayFlorEnLaEsquina
       tomarFlor
       cantFlores := cantFlores + 1
+    sino
+      cantVacias := cantVacias + 1
   fin
   
   proceso depositoFlores(E cantFlores: numero)
@@ -18,12 +19,12 @@ procesos
       depositarFlor
   fin
   
-  proceso recorrerAvenida(E numAv: numero; ES cantidadFlores: numero)
+  proceso recorrerAvenida(E numAv: numero; ES cantidadFlores: numero; ES cantidadVacias: numero)
   comenzar
     Pos(numAv, 1)
     repetir 99
       mover
-      juntar(cantidadFlores)
+      contador(cantidadFlores, cantidadVacias)
     depositoFlores(cantidadFlores)
   fin
   
@@ -34,12 +35,17 @@ robots
   robot robot1
   variables
     cantidadFlores: numero
+    cantidadVacias: numero
+    i: numero
   comenzar  
-    cantidadFlores := 0
-    recorrerAvenida(1, cantidadFlores)
-    recorrerAvenida(3, cantidadFlores)
-    recorrerAvenida(5, cantidadFlores)
-    Informar(cantidadFlores)
+    i := 1
+    mientras i <= 5
+      cantidadFlores := 0
+      cantidadVacias := 0
+      recorrerAvenida(i, cantidadFlores, cantidadVacias)
+      i := i + 2
+      Informar(cantidadFlores)
+      Informar(cantidadVacias)
   fin
   
 variables
