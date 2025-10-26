@@ -1,0 +1,62 @@
+{b) Modifique el programa anterior para que el trabajo sea realizado por 3 robots: uno realiza la avenida 1, otro realiza la 
+avenida 3 y otro la avenida 5. Cada robot debe iniciar en las esquina (1,1), (3,1) y (5,1) respectivamente.}
+programa ejemplo
+procesos
+  proceso contador(ES cantFlores: numero; ES cantVacias: numero)
+  comenzar
+    si HayFlorEnLaEsquina
+      tomarFlor
+      cantFlores := cantFlores + 1
+    sino
+      cantVacias := cantVacias + 1
+  fin
+  
+  proceso depositoFlores(E cantFlores: numero)
+  comenzar
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  
+  proceso juntoFloresYCuentoVacias(ES cantidadFlores: numero; ES cantidadVacias: numero)
+  comenzar
+    repetir 99      
+      contador(cantidadFlores, cantidadVacias)
+      mover
+  fin
+  
+  proceso recorrerAvenida
+  variables
+    cantidadFlores: numero
+    cantidadVacias: numero
+  comenzar
+    cantidadFlores := 0
+    cantidadVacias := 0
+    juntoFloresYCuentoVacias(cantidadFlores, cantidadVacias)
+    depositoFlores(cantidadFlores)
+    Informar(cantidadFlores)  
+    Informar(cantidadVacias)
+  fin
+  
+areas
+  ciudad: AreaP(1, 1, 1, 100)    
+  ciudad2: AreaP(3, 1, 3, 100) 
+  ciudad3: AreaP(5, 1, 5, 100) 
+
+robots
+  robot robot1
+  comenzar   
+    recorrerAvenida
+  fin
+  
+variables
+  r1: robot1
+  r2: robot1
+  r3: robot1
+comenzar
+  AsignarArea(r1, ciudad)
+  AsignarArea(r2, ciudad2)
+  AsignarArea(r3, ciudad3)
+  Iniciar(r1, 1,1)
+  Iniciar(r2, 3,1)
+  Iniciar(r3, 5,1)
+fin
