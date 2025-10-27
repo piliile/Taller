@@ -1,0 +1,81 @@
+{Realice un programa en el que 3 robots realicen escaleras de 4 escalones. El tamaño de cada 
+escalón se incrementa en un 1 respecto al escalón anterior. El primer escalón será de 1x1, el segundo de 2x2, y así sucesivamente.
+Al finalizar el recorrido, cada robot debe informar la cantidad de escalones en los que la
+cantidad de papeles superó en 1 a la cantidad de flores. Las esquinas deben quedar sin modificar.}
+
+programa ejercicio3
+procesos
+  proceso contar(ES cantidadPapeles: numero; ES cantidadFlores: numero)
+  variables
+    papelesEsquina, floresEsquina: numero
+  comenzar
+    papelesEsquina := 0
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      papelesEsquina := papelesEsquina + 1
+    repetir papelesEsquina
+      depositarPapel
+    cantidadPapeles := cantidadPapeles + papelesEsquina
+    floresEsquina := 0
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      floresEsquina := floresEsquina + 1
+    repetir floresEsquina
+      depositarFlor
+    cantidadFlores := cantidadFlores + floresEsquina
+  fin
+  proceso escalon(E cantidadMovs: numero; ES cantidadEscalones: numero)
+  variables
+    cantidadPapeles, cantidadFlores: numero
+  comenzar
+    cantidadPapeles := 0
+    cantidadFlores := 0
+    repetir cantidadMovs
+      contar(cantidadPapeles, cantidadFlores)
+      mover
+    derecha
+    repetir cantidadMovs
+      contar(cantidadPapeles, cantidadFlores)
+      mover
+    si (cantidadPapeles = (cantidadFlores + 1))
+      cantidadEscalones := cantidadEscalones + 1
+    repetir 3
+      derecha
+  fin
+
+  proceso escalera
+  variables
+    cantidadMovs, cantidadEscalones: numero
+  comenzar
+    cantidadMovs := 1
+    cantidadEscalones := 0
+    repetir 4
+      escalon(cantidadMovs, cantidadEscalones)
+      cantidadMovs := cantidadMovs + 1
+    Informar(cantidadEscalones)
+  fin
+
+areas
+  ciudad: AreaC (12,14,100,100)
+  ciudad2: AreaC (17, 10, 100, 100)
+  ciudad3: AreaC (22, 6, 100, 100)
+  
+robots
+  robot robot1
+  comenzar
+    escalera
+  fin
+
+variables
+  r1: robot1
+  r2: robot1
+  r3: robot1
+
+comenzar
+  AsignarArea(r1, ciudad)
+  AsignarArea(r2, ciudad2)
+  AsignarArea(r3, ciudad3)
+  Iniciar(r1, 12, 14)
+  Iniciar(r2, 17, 10)
+  Iniciar(r3, 22, 6)
+fin
