@@ -1,3 +1,6 @@
+{Modifique el ejercicio anterior, considerando que ahora habrá un robot fiscalizador,
+que será responsable de informar la diferencia de flores que obtuvo el ganador con
+respecto al perdedor. El robot fiscalizador se ubica en la esquina (2,1)}
 programa ejercicio1
 procesos
   proceso juntarFlores(ES cantFlo: numero)
