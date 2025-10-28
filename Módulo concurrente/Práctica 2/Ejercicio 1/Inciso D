@@ -1,3 +1,5 @@
+{Modifique el inciso anterior para que ahora el fiscalizador informe también, cuál fue el
+robot ganador.}
 programa ejercicio1
 procesos
   proceso juntarFlores(ES cantFlo: numero)
