@@ -1,0 +1,169 @@
+programa ejercicio4
+procesos
+  proceso limpiarFlores(ES cantFlo: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      cantFlo := cantFlo + 1
+  fin
+  proceso limpiarPapeles(ES cantPap: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      cantPap := cantPap + 1
+  fin
+  proceso inicializoVariables(ES avIni: numero; ES caIni: numero; ES cantFlo: numero; ES cantPap: numero)
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    cantFlo := 0
+    cantPap := 0
+  fin
+  proceso generarEsquinaRandomYPosicionarRobot
+  variables
+    avenida, calle: numero
+  comenzar
+    Random(avenida, 25, 75)
+    Random(calle, 25, 75)
+    Pos(avenida, calle)
+  fin 
+  proceso limpiarEsquinaRandom(ES cantTotal: numero)
+  variables
+    cantFlo, cantPap, avIni, caIni: numero
+  comenzar
+    inicializoVariables(avIni, caIni, cantFlo, cantPap)
+    generarEsquinaRandomYPosicionarRobot
+    limpiarFlores(cantFlo)
+    limpiarPapeles(cantPap)
+    cantTotal := cantFlo + cantPap
+    Pos(avIni, caIni)
+  fin
+  proceso inicializoCantidadesFYPRobots(ES c1: numero; ES c2: numero; ES c3: numero; ES c4: numero)
+  comenzar
+    c1 := 0
+    c2 := 0
+    c3 := 0
+    c4 := 0
+  fin
+  proceso envioFalsoALosRobots
+  comenzar   
+    EnviarMensaje(F, r1)
+    EnviarMensaje(F, r2)
+    EnviarMensaje(F, r3)
+    EnviarMensaje(F, r4)
+  fin
+  proceso obtenerMaximo(ES c1: numero; ES c2: numero; ES c3: numero; ES c4: numero; ES robotRandomMax: numero)
+  variables
+    maximo: numero
+  comenzar
+    maximo := -1
+    si (c1 > max)
+      max := c1
+      robotRandomMax := 1
+    sino
+      si (c2 > max)
+        max := c2
+        robotRandomMax := 2
+      sino
+        si (c3 > max)
+          max := c3
+          robotRandomMax := 3
+        sino
+          si (c4 > max)
+            max := c4
+            robotRandomMax := 4
+  fin
+  proceso envioValorAlRobotGanador(E i: numero; E ok: numero)
+  comenzar
+    si (i = 1)
+      EnviarMensaje(ok, r1)
+    sino
+      si (i = 2)
+        EnviarMensaje(ok, r2)
+      sino
+        si (i = 3)
+          EnviarMensaje(ok, r3)
+        sino
+          si (i = 4)
+            EnviarMensaje(ok, r4)
+  fin
+areas
+  ciudadF: AreaP (1, 1, 1, 1)
+  areaCuadrado: AreaPC (25, 25, 75, 75)
+  area1: AreaP (25,1,25,1)
+  area2: AreaP (30,1,30,1)
+  area3: AreaP (35,1,35,1)
+  area4: AreaP (40,1,40,1) 
+robots
+  robot robot1
+  variables
+    cantidadTotal: numero
+    puedoEntrar, ganador: boolean
+  comenzar
+    RecibirMensaje(puedoEntrar, rF)
+    mientras (puedoEntrar)  
+      RecibirMensaje(cantidadTotal, rF){recibe la cantidad (no va a ser siempre 0, se olvidaría lo que se obtuvo)}
+      limpiarEsquinaRandom(cantidadTotal)
+      EnviarMensaje(cantidadTotal, rF)
+    RecibirMensaje(ganador, rF)
+    si (ganador)
+      Pos(50, 50)
+  fin
+  robot fiscalizador
+  variables
+    robotRandom, robotRandomMax, cantR1, cantR2, cantR3, cantR4, i: numero
+    ok: boolean
+  comenzar
+    inicializoCantidadesFYPRobots(cantR1, cantR2, cantR3, cantR4)
+    repetir 10
+      Random(robotRandom, 1, 4)
+      si (robotRandom = 1)
+        EnviarMensaje(V, r1)
+        EnviarMensaje(cantR1, r1)
+        RecibirMensaje(cantR1, r1)
+      sino
+        si (robotRandom = 2)
+          EnviarMensaje(V, r2)
+          EnviarMensaje(cantR2, r2)
+          RecibirMensaje(cantR2, r2)
+        sino
+           si (robotRandom = 3)
+            EnviarMensaje(V, r3)
+            EnviarMensaje(cantR3, r3)
+            RecibirMensaje(cantR3, r3)
+           sino
+              si (robotRandom = 4)
+                EnviarMensaje(V, r4)
+                EnviarMensaje(cantR4, r4)
+                RecibirMensaje(cantR4, r4)
+    envioFalsoALosRobots {termino con el bucle del mientras}
+    obtenerMaximo(cantR1, cantR2, cantR3, cantR4, robotRandomMax)
+    i := 1
+    repetir 4
+      si (i = max)
+        ok := V
+      sino
+        ok := F
+      envioValorAlRobotGanador(i, ok)
+      i := i + 1
+    Informar(max)
+ fin
+variables
+  r1, r2, r3, r4: robot1
+  rF: fiscalizador
+comenzar
+  AsignarArea(rF, ciudadF)
+  AsignarArea(r1, areaCuadrado)
+  AsignarArea(r1, area1)
+  AsignarArea(r2, areaCuadrado)
+  AsignarArea(r2, area2)
+  AsignarArea(r3, areaCuadrado)  
+  AsignarArea(r3, area3)  
+  AsignarArea(r4, areaCuadrado)
+  AsignarArea(r4, area4)
+  Iniciar(rF, 1, 1)
+  Iniciar(r1, 25, 1)
+  Iniciar(r2, 30, 1)
+  Iniciar(r3, 35, 1)
+  Iniciar(r4, 40, 1)  
+fin
