@@ -57,7 +57,7 @@ robots
   variables
     cantidadPapeles: numero
   comenzar
-    RecibirMensaje(cantidadPapeles, a1)
+    RecibirMensaje(cantidadPapeles, a1) {CON ESTE MSJ ESPERA A QUE TERMINE EL PROCESO QUE SE HACE EN A1}
     recorrerCalle1(cantidadPapeles)
     Informar('Papeles totales ', cantidadPapeles)
   fin
@@ -73,7 +73,7 @@ robots
   variables
     cantidadFlores: numero
   comenzar
-    RecibirMensaje(cantidadFlores, b1)
+    RecibirMensaje(cantidadFlores, b1) {CON ESTE MSJ ESPERA A QUE TERMINE EL PROCESO QUE SE HACE EN B1}
     recorrerCalle1(cantidadFlores)
     Informar('Flores totales ', cantidadFlores)
   fin
