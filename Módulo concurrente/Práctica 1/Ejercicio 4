@@ -15,35 +15,37 @@ procesos
     repetir 99 
       limpiarFlores
       mover
+    limpiarFlores
   fin
-  proceso areaImpar(E finAv: numero)
+  proceso areaImpar
   variables
     i: numero 
   comenzar
     i := PosAv
-    repetir finAv 
+    repetir 24
       recorroAvenidaFlores
       i := i + 1
       Pos(i, 1)
+    recorroAvenidaFlores
   fin
   proceso recorroAvenidaPapeles
   comenzar
     repetir 99
       limpiarPapeles
       mover
+    limpiarPapeles
   fin
-  proceso areaPar(E finAv: numero)
+  proceso areaPar
   variables
     i: numero  
   comenzar
     i := PosAv
-    repetir finAv 
+    repetir 24
       recorroAvenidaPapeles
       i := i + 1
       Pos(i, 1)
+    recorroAvenidaPapeles
   fin  
-  
-  
 areas
   area1: AreaP (1, 1, 25, 100)
   area2: AreaP (26, 1, 50, 100)
@@ -52,24 +54,18 @@ areas
   
 robots
   robot robot1
-  variables 
-    inicioAv, finAv: numero
   comenzar
-    finAv := 25
-    areaImpar(finAv)
-    finAv := 75
+    areaImpar
     Pos(51, 1)
-    areaImpar(finAv)
+    areaImpar
   fin
   robot robot2
   variables 
     inicioAv, finAv: numero
   comenzar
-    finAv := 50
-    areaPar(finAv)
-    finAv := 100
+    areaPar
     Pos(76, 1)
-    areaPar(finAv)
+    areaPar
   fin
 variables
   r1: robot1
