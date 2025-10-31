@@ -1,0 +1,139 @@
+programa ejercicio1
+procesos
+  proceso juntarFlores(ES cantFlo: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      cantFlo := cantFlo + 1
+  fin
+  proceso generarEsqRandom(ES av: numero; ES ca: numero; E avIni: numero; E avFin: numero; E caIni: numero; E caFin: numero)
+  comenzar
+    Random(av, avIni, avFin)
+    Random(ca, caIni, caFin)
+  fin
+  proceso depositarFlores(E cantFlo: numero)
+  comenzar
+    mientras HayFlorEnLaBolsa
+      depositarFlor
+  fin
+  proceso limpiarEsquina(ES cantFlo: numero)
+  variables
+    avenida, calle: numero
+    avenidaIni, calleIni: numero
+  comenzar
+    avenidaIni := PosAv
+    calleIni := PosCa
+    generarEsqRandom(avenida, calle, 1, 5, 1, 10)
+    Pos(avenida, calle)
+    juntarFlores(cantFlo)
+    Pos(avenidaIni, calleIni)
+  fin
+  proceso juntarPapeles(ES cantPap: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      cantPap := cantPap + 1
+  fin
+  proceso limpiarEsquinaPap(ES cantPap: numero)
+  variables
+    avenida, calle: numero
+    avenidaIni, calleIni: numero
+  comenzar
+    avenidaIni := PosAv
+    calleIni := PosCa
+    generarEsqRandom(avenida, calle, 6, 10, 1, 9)
+    BloquearEsquina(avenida, calle)
+    juntarPapeles(cantPap)
+    Pos(avenidaIni, calleIni)
+    LiberarEsquina(avenida, calle)
+  fin
+areas
+  area1: AreaC (1, 1, 5, 10)
+  area1inicio1: AreaP (6, 10, 6, 10)
+  area1inicio2: AreaP (7, 10, 7, 10)
+  area2: AreaC (6, 1, 10, 9)
+  area2inicio1: AreaP (8, 10, 8, 10)
+  area2inicio2: AreaP (9, 10, 9, 10)
+  areaDepositadora: AreaP (10, 10, 10, 10)
+robots
+  robot florero1
+  variables
+    cantidadFlores, avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    cantidadFlores := 0
+    repetir 5
+      limpiarEsquina(cantidadFlores)
+    BloquearEsquina(10, 10)
+    Pos(10, 10)
+    depositarFlores(cantidadFlores)
+    Pos(avIni, caIni)
+    LiberarEsquina(10, 10)
+  fin     
+  robot florero2
+  variables
+    cantidadFlores, avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    cantidadFlores := 0
+    repetir 5
+      limpiarEsquina(cantidadFlores)
+    Pos(10, 10)
+    depositarFlores(cantidadFlores)
+    Pos(avIni, caIni)
+    LiberarEsquina(10, 10)   
+   fin
+  robot papelero1
+  variables
+    cantidadPapeles,avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    cantidadPapeles := 0
+    repetir 3
+      limpiarEsquinaPap(cantidadPapeles)
+    BloquearEsquina(10, 10)
+    Pos(10, 10)
+    depositarPapeles(cantidadPapeles)
+    Pos(avIni, caIni)
+    LiberarEsquina(10, 10)
+  fin 
+  robot papelero2
+  variables
+    cantidadPapeles, avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    cantidadPapeles := 0
+    repetir 3
+      limpiarEsquinaPap(cantidadPapeles)
+    Pos(10, 10)
+    depositarPapeles(cantidadPapeles)
+    Pos(avIni, caIni)
+    LiberarEsquina(10, 10)
+  fin 
+variables
+  r1: florero1
+  r2: florero2
+  r3: papelero1
+  r4: papelero2
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r1, area1inicio1)
+  AsignarArea(r2, area1)
+  AsignarArea(r2, area1inicio2)
+  AsignarArea(r3, area2)
+  AsignarArea(r3, area2inicio1)
+  AsignarArea(r4, area2)
+  AsignarArea(r4, area2inicio2)
+  AsignarArea(r1, areaDepositadora)
+  AsignarArea(r2, areaDepositadora)
+  AsignarArea(r3, areaDepositadora)
+  AsignarArea(r4, areaDepositadora)  
+  Iniciar(r1, 6, 10)
+  Iniciar(r2, 7, 10)
+  Iniciar(r3, 8, 10)
+  Iniciar(r4, 9, 10)
+fin
