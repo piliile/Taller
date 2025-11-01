@@ -1,0 +1,119 @@
+programa ejercicio1
+procesos
+  proceso juntarFlores(ES cantFlo: numero; E av: numero; E ca: numero; E avIni: numero; E caIni: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      cantFlo := cantFlo + 1
+      Pos(avIni, caIni)
+      LiberarEsquina(av, ca)
+      BloquearEsquina(av, ca)
+      Pos(av, ca) 
+  fin
+  {proceso generarEsquinaRandom(ES av: numero; ES ca: numero)}
+  {comenzar}
+   { Random(av, 2, 10)}
+   { Random(ca, 2, 10)}
+  {fin}
+  proceso juntoFloresEsquina(ES cantFlo: numero; E av: numero; E ca: numero)
+  variables
+    avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    BloquearEsquina(av, ca)
+    Pos(av, ca)
+    cantFlo := 0
+    juntarFlores(cantFlo, av, ca, avIni, caIni)
+    Pos(avIni, caIni)
+    LiberarEsquina(av, ca)
+  fin
+  proceso envioCalleYAvenida(E av: numero; E ca: numero)
+  comenzar
+    EnviarMensaje(av, r1)
+    EnviarMensaje(ca, r1)
+    EnviarMensaje(av, r2)
+    EnviarMensaje(ca, r2)
+    EnviarMensaje(av, r3)
+    EnviarMensaje(ca, r3)
+    EnviarMensaje(av, r4)
+    EnviarMensaje(ca, r4)
+  fin
+  proceso enviarIDs
+  comenzar
+    EnviarMensaje(1, r1)
+    EnviarMensaje(2, r2)
+    EnviarMensaje(3, r3)            
+    EnviarMensaje(4, r4)
+  fin
+  proceso obtenerMaximo(E cantFlores: numero; ES rMax: numero; E id: numero; E max: numero)
+  comenzar
+    si (max < cantFlores)
+      max := cantFlores
+      rMax := id
+  fin
+areas
+  areaCuadrante: AreaC (2, 10, 2, 10)
+  areaJefe: AreaP (1, 1, 1, 1)
+  area1inicio: AreaP (2, 1, 2, 1)
+  area2inicio: AreaP (3, 1, 3, 1)
+  area3inicio: AreaP (4, 1, 4, 1)
+  area4inicio: AreaP (5, 1, 5, 1)
+
+robots
+  robot robotFlores
+  variables
+    avenida, calle, cantidadFlores, id: numero
+  comenzar
+    RecibirMensaje(id, rJ)
+    RecibirMensaje(avenida, rJ) 
+    RecibirMensaje(calle, rJ)
+    juntoFloresEsquina(cantidadFlores, avenida, calle)
+    EnviarMensaje(id, rJ)
+    EnviarMensaje(cantidadFlores, rJ)
+  fin
+  robot robotJefe
+  variables
+    avenida, calle, robotMax, cantFlores, id, maximo: numero
+  comenzar
+    enviarIDs
+    Random(avenida, 2, 10)
+    Random(calle, 2, 10)
+   {generarEsquinaRandom(avenida, calle)}
+    envioCalleYAvenida(avenida, calle)
+    maximo := -1
+    repetir 4
+      RecibirMensaje(id, *)
+      si (id = 1)
+        RecibirMensaje(cantFlores, r1)
+      sino  
+        si (id = 2)
+          RecibirMensaje(cantFlores, r2)
+        sino
+          si (id = 3)
+            RecibirMensaje(cantFlores, r3)
+          sino 
+            si (id = 4)
+              RecibirMensaje(cantFlores, r4)
+      obtenerMaximo(cantFlores, robotMax, id, maximo)
+    Informar(robotMax)
+  fin
+variables
+  r1, r2, r3, r4: robotFlores
+  rJ: robotJefe
+comenzar
+  AsignarArea(r1, areaCuadrante)
+  AsignarArea(r2, areaCuadrante)
+  AsignarArea(r3, areaCuadrante)
+  AsignarArea(r4, areaCuadrante)
+  AsignarArea(r1, area1inicio)
+  AsignarArea(r2, area2inicio)
+  AsignarArea(r3, area3inicio)
+  AsignarArea(r4, area4inicio)
+  AsignarArea(rJ, areaJefe)
+  Iniciar(r1, 2, 1)
+  Iniciar(r2, 3, 1)
+  Iniciar(r3, 4, 1)
+  Iniciar(r4, 5, 1)
+  Iniciar(rJ, 1, 1)
+fin
