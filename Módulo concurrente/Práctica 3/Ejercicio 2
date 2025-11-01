@@ -1,1 +1,116 @@
 
+programa ejercicio1
+procesos
+  proceso juntarFlores(ES cantFlo: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      cantFlo := cantFlo + 1
+  fin
+  proceso juntarPapeles(ES cantPap: numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      cantPap := cantPap + 1
+  fin
+  proceso escalon1_1(E cantMov: numero; ES cantFlo: numero)
+  comenzar
+    repetir cantMov
+      mover
+    juntarFlores(cantFlo)
+    derecha
+    repetir cantMov
+      mover
+    repetir 3
+      derecha
+  fin 
+  proceso escalon2_1(E cantMov: numero; ES cantFlo: numero)
+  comenzar
+    repetir cantMov
+      mover
+    repetir 3
+      derecha
+    repetir cantMov
+      mover
+    juntarFlores(cantFlo)
+  fin
+  proceso recorrido1(ES cantFlo: numero)
+  variables
+    cantMov: numero
+  comenzar
+    cantMov := 5
+    repetir 5
+      escalon1_1(cantMov, cantFlo)
+      cantMov := cantMov - 1
+    repetir 2
+      derecha  
+    mover
+    cantMov := 2
+    repetir 4 
+      escalon2_1(cantMov, cantFlo)  
+      cantMov := cantMov + 1
+  fin
+  proceso escalon1_2(E cantMov: numero; ES cantPap: numero)
+  comenzar
+    repetir cantMov
+      mover
+    juntarPapeles(cantPap)
+    derecha
+    repetir cantMov
+      mover
+    repetir 3
+      derecha
+  fin 
+  proceso escalon2_2(E cantMov: numero; ES cantPap: numero)
+  comenzar
+    repetir cantMov
+      mover
+    repetir 3
+      derecha
+    repetir cantMov
+      mover
+    juntarPapeles(cantPap)
+  proceso recorrido2(ES cantPap: numero)
+  variables
+    cantMov: numero
+  comenzar
+    cantMov := 5
+    repetir 5
+      escalon1_2(cantMov, cantPap)
+      cantMov := cantMov - 1
+    repetir 2
+      derecha  
+    mover
+    cantMov := 2
+    repetir 4 
+      escalon2_2(cantMov, cantPap)  
+      cantMov := cantMov + 1
+  fin
+  fin
+areas
+  area1: AreaC (1, 1, 5, 10)
+  area1inicio1: AreaP (6, 10, 6, 10)
+  area1inicio2: AreaP (7, 10, 7, 10)
+
+robots
+  robot robot1
+  variables
+
+  comenzar
+ 
+  fin     
+  robot robot2
+  variables
+   
+  comenzar
+
+   fin
+variables
+  r1: florero1
+  r2: florero2
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r1, area1inicio1)
+  Iniciar(r1, 6, 10)
+  Iniciar(r2, 7, 10)
+fin
