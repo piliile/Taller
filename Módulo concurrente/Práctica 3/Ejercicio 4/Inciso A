@@ -1,0 +1,110 @@
+programa ejercicio3
+procesos
+  proceso juntarFlorYMover(E avIni: numero; E caIni: numero)
+  comenzar
+    tomarFlor
+    BloquearEsquina(11, 11)
+    Pos(11, 11)
+    LiberarEsquina(10, 10)
+    depositarFlor
+    Pos(avIni, caIni)
+    LiberarEsquina(11, 11)
+  fin
+  proceso juntoFlorEsquina(ES hayFlor: boolean)
+  variables
+    avIni, caIni: numero
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    BloquearEsquina(10, 10)
+    Pos(10, 10)
+    si HayFlorEnLaEsquina
+      juntarFlorYMover(avIni, caIni)
+    sino
+      hayFlor := F
+      Pos(avIni, caIni) 
+      LiberarEsquina(10, 10)
+  fin
+  proceso enviarIDs
+  comenzar
+    EnviarMensaje(1, r1)
+    EnviarMensaje(2, r2)
+    EnviarMensaje(3, r3)            
+    EnviarMensaje(4, r4)
+  fin
+  proceso informarUltimoID(E id: numero)
+  comenzar
+    si (id = 1)
+      Informar(1)
+    sino 
+      si (id = 2)
+        Informar(2)
+      sino
+        si (id = 3)
+          Informar(3)
+        sino
+          si (id = 4)
+            Informar(4)
+  fin
+  proceso juntoFloresEsquinaOnce
+  comenzar
+    Pos(11, 11)
+    mientras HayFlorEnLaEsquina
+      tomarFlor 
+    Pos(1, 1)
+  fin
+areas
+  areaJefe: AreaP (1, 1, 1, 1)
+  area1inicio: AreaP (9, 9, 9, 9)
+  area2inicio: AreaP (9, 10, 9, 10)
+  area3inicio: AreaP (9, 11, 9, 11)
+  area4inicio: AreaP (9, 12, 9, 12)
+  esquinaDiez: AreaPC (10, 10, 10, 10)
+  esquinaOnce: AreaPC (11, 11, 11, 11)
+
+robots
+  robot robotFlores
+  variables 
+    id: numero
+    hayFlor: boolean
+  comenzar
+    RecibirMensaje(id, rJ)
+    hayFlor := V
+    mientras (hayFlor)  
+      juntoFlorEsquina(hayFlor)
+    EnviarMensaje(id, rJ)
+  fin
+  robot robotJefe
+  variables
+    id: numero
+  comenzar
+    enviarIDs
+    repetir 4
+      RecibirMensaje(id, *)
+    informarUltimoID(id)
+    juntoFloresEsquinaOnce
+  fin
+variables
+  r1, r2, r3, r4: robotFlores
+  rJ: robotJefe
+comenzar
+  AsignarArea(r1, area1inicio)
+  AsignarArea(r2, area2inicio) 
+  AsignarArea(r3, area3inicio)
+  AsignarArea(r4, area4inicio)
+  AsignarArea(rJ, areaJefe)
+  AsignarArea(r1, esquinaDiez)
+  AsignarArea(r2, esquinaDiez)
+  AsignarArea(r3, esquinaDiez)
+  AsignarArea(r4, esquinaDiez)
+  AsignarArea(r1, esquinaOnce)
+  AsignarArea(r2, esquinaOnce)
+  AsignarArea(r3, esquinaOnce)
+  AsignarArea(r4, esquinaOnce)
+  AsignarArea(rJ, esquinaOnce)
+  Iniciar(r1, 9, 9)
+  Iniciar(r2, 9, 10)
+  Iniciar(r3, 9, 11)
+  Iniciar(r4, 9, 12)
+  Iniciar(rJ, 1, 1)
+fin
